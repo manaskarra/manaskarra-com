@@ -8,69 +8,76 @@ export const metadata: Metadata = {
     "Manas Karra, Applied AI Engineer at Deriv, hip-hop producer as sledg3r, based in Dubai.",
 };
 
+// Compact CV block. Rendered in the desktop sidebar (Section's `sidebar` slot)
+// and again at the bottom of the page for mobile, where the sidebar slot is
+// hidden to keep the top of the article clean.
+function CVBlock() {
+  return (
+    <div className="space-y-8 font-mono text-[11px] leading-relaxed text-fg-subtle">
+      <div>
+        <p className="uppercase tracking-[0.15em] text-[10px] text-fg-subtle/70 mb-3">
+          work
+        </p>
+        <div className="space-y-4">
+          <div>
+            <p className="text-fg">Deriv</p>
+            <p className="text-fg-subtle/90">applied ai engineer</p>
+            <p className="tabular-nums text-fg-subtle/60 mt-0.5">
+              feb 2025 → now
+            </p>
+          </div>
+          <div>
+            <p className="text-fg">Impiger Technologies</p>
+            <p className="text-fg-subtle/90">qa analyst</p>
+            <p className="tabular-nums text-fg-subtle/60 mt-0.5">
+              summer 2023
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-rule pt-6">
+        <p className="uppercase tracking-[0.15em] text-[10px] text-fg-subtle/70 mb-3">
+          school
+        </p>
+        <div className="space-y-4">
+          <div>
+            <p className="text-fg">BITS Pilani</p>
+            <p className="tabular-nums text-fg-subtle/60 mt-0.5">
+              2021 → 2025
+            </p>
+          </div>
+          <div>
+            <p className="text-fg">The Indian High School</p>
+            <p className="text-fg-subtle/90">dubai</p>
+            <p className="tabular-nums text-fg-subtle/60 mt-0.5">
+              2013 → 2021
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-rule pt-6">
+        <p className="uppercase tracking-[0.15em] text-[10px] text-fg-subtle/70 mb-3">
+          honors
+        </p>
+        <div>
+          <p className="text-fg">UAE Golden Visa</p>
+          <p className="text-fg-subtle/90">distinction student</p>
+          <p className="tabular-nums text-fg-subtle/60 mt-0.5">2022</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function AboutPage() {
   return (
     <Section
       marker="§ 02 / about"
       label="dubai"
       as="article"
-      sidebar={
-        <div className="space-y-8">
-          <div>
-            <p className="uppercase tracking-[0.15em] text-[10px] text-fg-subtle/70 mb-3">
-              work
-            </p>
-            <div className="space-y-4">
-              <div>
-                <p className="text-fg">Deriv</p>
-                <p className="text-fg-subtle/90">applied ai engineer</p>
-                <p className="tabular-nums text-fg-subtle/60 mt-0.5">
-                  feb 2025 → now
-                </p>
-              </div>
-              <div>
-                <p className="text-fg">Impiger Technologies</p>
-                <p className="text-fg-subtle/90">qa analyst</p>
-                <p className="tabular-nums text-fg-subtle/60 mt-0.5">
-                  summer 2023
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-rule pt-6">
-            <p className="uppercase tracking-[0.15em] text-[10px] text-fg-subtle/70 mb-3">
-              school
-            </p>
-            <div className="space-y-4">
-              <div>
-                <p className="text-fg">BITS Pilani</p>
-                <p className="tabular-nums text-fg-subtle/60 mt-0.5">
-                  2021 → 2025
-                </p>
-              </div>
-              <div>
-                <p className="text-fg">The Indian High School</p>
-                <p className="text-fg-subtle/90">dubai</p>
-                <p className="tabular-nums text-fg-subtle/60 mt-0.5">
-                  2013 → 2021
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-rule pt-6">
-            <p className="uppercase tracking-[0.15em] text-[10px] text-fg-subtle/70 mb-3">
-              honors
-            </p>
-            <div>
-              <p className="text-fg">UAE Golden Visa</p>
-              <p className="text-fg-subtle/90">distinction student</p>
-              <p className="tabular-nums text-fg-subtle/60 mt-0.5">2022</p>
-            </div>
-          </div>
-        </div>
-      }
+      sidebar={<CVBlock />}
     >
       <header>
         <h1 className="font-serif text-[48px] sm:text-[64px] leading-[1.02] tracking-[-0.025em] text-fg">
@@ -191,6 +198,12 @@ export default function AboutPage() {
           </a>
           . I try to reply to anything thoughtful and ignore the rest.
         </p>
+      </div>
+
+      {/* Mobile-only CV. The sidebar slot is hidden under md, so we surface
+          the same content here, anchored to the bottom of the article. */}
+      <div className="md:hidden mt-14 pt-10 border-t border-rule">
+        <CVBlock />
       </div>
     </Section>
   );

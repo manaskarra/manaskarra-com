@@ -11,20 +11,22 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-bg/90 backdrop-blur-md supports-[backdrop-filter]:bg-bg/75">
       <nav
-        className="mx-auto w-full max-w-[1400px] px-6 sm:px-10 py-5 flex items-center justify-between gap-6"
+        className="mx-auto w-full max-w-[1400px] px-4 sm:px-10 py-5 flex items-center justify-between gap-4 sm:gap-6"
         aria-label="Primary"
       >
         <Link
           href="/"
-          className="font-mono text-[13px] tracking-tight text-fg hover:text-accent transition-colors inline-flex items-center gap-1.5"
-          aria-label="Home"
+          className="font-mono text-[13px] tracking-tight text-fg hover:text-accent transition-colors inline-flex items-center gap-1.5 shrink-0"
+          aria-label="manas / sledg3r — home"
         >
           <span>manas</span>
-          <span className="text-fg-subtle/70">/</span>
-          <span className="text-fg-subtle">sledg3r</span>
+          <span className="text-fg-subtle/70 hidden sm:inline" aria-hidden="true">
+            /
+          </span>
+          <span className="text-fg-subtle hidden sm:inline">sledg3r</span>
         </Link>
-        <div className="flex items-center gap-5 sm:gap-7">
-          <ul className="flex items-center gap-5 sm:gap-7 font-mono text-[12px] tracking-tight">
+        <div className="flex items-center gap-4 sm:gap-7">
+          <ul className="flex items-center gap-4 sm:gap-7 font-mono text-[12px] tracking-tight">
             {site.nav.map((item) => {
               const active =
                 item.href === "/"
