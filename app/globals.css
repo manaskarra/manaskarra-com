@@ -1,0 +1,377 @@
+@import "tailwindcss";
+
+/* light (default) — lighter, cooler, more paper than cream */
+:root {
+  --bg: #f6f6fa;
+  --bg-elevated: #fdfdff;
+  --fg: #0a0b1e;
+  --fg-muted: #3734eb;
+  --fg-subtle: #6b6c8a;
+  --rule: #e4e4ef;
+  --accent: #3734eb;
+  --accent-hover: #2722c9;
+  --code-bg: #ececf3;
+}
+
+/* dark — deeper, slight blue cast kept */
+:root[data-theme="dark"] {
+  --bg: #08080f;
+  --bg-elevated: #111119;
+  --fg: #eaeaef;
+  --fg-muted: #9d9bfc;
+  --fg-subtle: #7a7b96;
+  --rule: #1e1e2a;
+  --accent: #6b68fc;
+  --accent-hover: #8a88ff;
+  --code-bg: #14141f;
+}
+
+/* honor OS preference before JS loads */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #08080f;
+    --bg-elevated: #111119;
+    --fg: #eaeaef;
+    --fg-muted: #9d9bfc;
+    --fg-subtle: #7a7b96;
+    --rule: #1e1e2a;
+    --accent: #6b68fc;
+    --accent-hover: #8a88ff;
+    --code-bg: #14141f;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-rule: var(--rule);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-code-bg: var(--code-bg);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color-scheme: light dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  transition: background-color 240ms ease, color 240ms ease;
+}
+
+/* ——— grain overlay ———
+   Static SVG turbulence filter rendered once, tiled, and fixed to the
+   viewport so it sits consistently over everything regardless of scroll.
+   Opacity is deliberately tiny (3-5%) so it reads as analog warmth, not
+   texture; imperceptible on text but visible on solid bg areas. No
+   animation, zero CPU cost beyond initial paint. Pointer-events none so
+   it never intercepts clicks. */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 140px 140px;
+}
+
+:root[data-theme="dark"] body::after {
+  opacity: 0.28;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) body::after {
+    opacity: 0.28;
+  }
+}
+
+::selection {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+.prose-post {
+  max-width: 65ch;
+}
+
+.prose-post p {
+  margin: 1.1rem 0;
+  line-height: 1.75;
+  font-size: 1.0625rem;
+}
+
+.prose-post h2 {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  font-weight: 500;
+  font-size: 1.625rem;
+  letter-spacing: -0.02em;
+  margin: 2.75rem 0 1rem;
+  line-height: 1.2;
+}
+
+.prose-post h3 {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  margin: 2rem 0 0.75rem;
+}
+
+.prose-post a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 160ms ease;
+}
+
+.prose-post a:hover {
+  color: var(--accent-hover);
+}
+
+.prose-post ul,
+.prose-post ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose-post ul {
+  list-style: disc;
+}
+
+.prose-post ol {
+  list-style: decimal;
+}
+
+.prose-post li {
+  margin: 0.4rem 0;
+  line-height: 1.7;
+}
+
+.prose-post blockquote {
+  border-left: 2px solid var(--accent);
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  margin: 1.5rem 0;
+  color: var(--fg-subtle);
+  font-style: italic;
+}
+
+.prose-post code:not(pre code) {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.88em;
+  background: var(--code-bg);
+  padding: 0.125rem 0.35rem;
+  border-radius: 3px;
+}
+
+.prose-post pre {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  background: var(--code-bg);
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.prose-post pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+[data-rehype-pretty-code-figure] {
+  margin: 1.5rem 0;
+}
+
+[data-rehype-pretty-code-title] {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--fg-subtle);
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--code-bg);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+[data-line] {
+  padding-left: 0;
+}
+
+[data-highlighted-line] {
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  border-left: 2px solid var(--accent);
+  padding-left: calc(1rem - 2px);
+  margin: 0 -1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* ——— nav link underline ———
+   text-decoration-color is transitionable, unlike the shorthand `underline`
+   Tailwind utility. So we render an always-on underline with a transparent
+   color by default and fade it in via accent when active. That plus the
+   foreground color transition gives a soft hand-off between tabs that
+   matches the page fade. */
+
+.nav-link {
+  color: var(--fg-subtle);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  text-decoration-color: transparent;
+  transition: color 220ms ease, text-decoration-color 220ms ease;
+}
+
+.nav-link:hover {
+  color: var(--fg);
+}
+
+.nav-link-active,
+.nav-link-active:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+/* ——— page transition ———
+   One orchestrated reveal per route change: content fades in and lifts
+   the final 6px into place. 520ms with ease-out-expo feels natural on
+   desktop; the curve decelerates sharply at the end so it "sets" rather
+   than drifting. Only transform + opacity (no layout properties). */
+
+.page-enter {
+  animation: page-enter 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ——— scrobble ticker ——— */
+
+.scrobble-bars {
+  width: 18px;
+}
+
+.scrobble-bar {
+  display: inline-block;
+  width: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+  height: 3px;
+  transform-origin: bottom;
+  will-change: transform;
+}
+
+/* each bar peaks at a different point in the cycle so they look like a
+   real EQ, not a marching stripe. the --i custom property is set per-bar
+   in the component (0..4) */
+.scrobble-bars[data-playing="true"] .scrobble-bar {
+  animation: scrobble-live 900ms ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -180ms);
+  height: 12px;
+}
+
+@keyframes scrobble-live {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  20% {
+    transform: scaleY(0.9);
+  }
+  40% {
+    transform: scaleY(0.4);
+  }
+  60% {
+    transform: scaleY(1);
+  }
+  80% {
+    transform: scaleY(0.55);
+  }
+}
+
+/* idle state — slow ambient breathe so the ticker still has life when
+   nothing is actively playing. far less energetic than the live pulse. */
+.scrobble-bars[data-playing="false"] .scrobble-bar {
+  animation: scrobble-idle 3200ms ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * -260ms);
+  height: 8px;
+  opacity: 0.55;
+}
+
+@keyframes scrobble-idle {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(0.7);
+  }
+}
+
+.scrobble-panel {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 260ms ease, opacity 200ms ease;
+}
+
+.scrobble-panel[data-open="true"] {
+  max-height: 180px;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrobble-bar {
+    animation: none !important;
+    height: 7px !important;
+    opacity: 0.7 !important;
+  }
+  .scrobble-panel {
+    transition: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
