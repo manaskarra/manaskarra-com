@@ -367,7 +367,7 @@ function HybridDisc() {
     // Spinning-coin wobble: tilt vector precesses around Y axis.
     // sin/cos at the same frequency traces a circle → the disc tilts and
     // rotates that tilt direction slowly, exactly like a coin settling.
-    const TILT      = 0.26 + Math.sin(t * 0.12) * 0.04; // subtle nod
+    const TILT      = 0.18 + Math.sin(t * 0.12) * 0.03; // subtle nod
     const PRECESS   = 0.38; // how fast the tilt direction rotates (rad/s)
     const SPIN      = 1.1;  // disc self-spin speed (rad/s)
 

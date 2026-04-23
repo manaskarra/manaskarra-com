@@ -18,7 +18,7 @@ export default function HomePage() {
       <Section marker="§ 00 / home" as="header">
         {/* On lg+ the name/text and vinyl sit side-by-side in a flex row.
             On smaller screens the vinyl drops below the social links. */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">
+        <div className="flex flex-row items-start gap-4 sm:gap-6 lg:gap-10">
           <div className="flex-1 min-w-0">
             <h1 className="font-serif text-[56px] sm:text-[80px] lg:text-[96px] leading-[0.98] tracking-[-0.03em] text-fg">
               <ScrambleText text="Manas" />
@@ -62,7 +62,7 @@ export default function HomePage() {
               Mobile/tablet: below the links, shorter. Hidden on very small
               screens (< sm) where the hero is already very tall. */}
           <div
-            className="hidden sm:block shrink-0 w-full sm:w-[240px] lg:w-[300px] h-[200px] sm:h-[240px] lg:h-[300px] mt-10 sm:mt-0"
+            className="shrink-0 w-[120px] h-[120px] sm:w-[240px] sm:h-[240px] lg:w-[300px] lg:h-[300px]"
             aria-hidden="true"
           >
             <VinylScene className="w-full h-full" />
