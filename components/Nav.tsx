@@ -16,9 +16,15 @@ export function Nav() {
       >
         <Link
           href="/"
-          className="font-mono text-[13px] tracking-tight text-fg hover:text-accent transition-colors inline-flex items-center gap-1.5 shrink-0"
+          className="font-mono text-[13px] tracking-tight text-fg hover:text-accent transition-colors inline-flex items-center gap-2 shrink-0"
           aria-label="manas / sledg3r — home"
         >
+          <img
+            src="/icon.svg"
+            alt=""
+            aria-hidden="true"
+            className="w-5 h-5 rounded-[4px]"
+          />
           <span>manas</span>
           <span className="text-fg-subtle/70 hidden sm:inline" aria-hidden="true">
             /
