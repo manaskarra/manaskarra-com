@@ -470,7 +470,7 @@ export default function VinylCanvas({ className }: { className?: string }) {
   return (
     <Canvas
       className={className}
-      camera={{ position: [0, 2.2, 4.5], fov: 36 }}
+      camera={{ position: [0, 2.2, 5.2], fov: 36 }}
       gl={{ alpha: true, antialias: true }}
       dpr={[1, 2]}
       aria-hidden="true"
