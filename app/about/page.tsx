@@ -115,11 +115,10 @@ export default function AboutPage() {
           in 2025, joined Deriv as an Applied AI Engineer intern, and came on
           full-time that August. My work these days revolves around
           multi-agent systems and agentic tools that actually do work,
-          and it&rsquo;s also where I love experimenting on my own time. I
-          enjoy getting hands-on with ML algorithms and the kind of big, messy
-          datasets that force you to think. And markets and finance are a bit
-          of an obsession, honestly. I&rsquo;m usually a few tabs deep into
-          whatever&rsquo;s moving in the world that week.
+          and it&rsquo;s also where I love experimenting on my own time.
+          ML algorithms and big messy datasets are something I genuinely enjoy
+          getting into. Markets and finance are a whole other rabbit hole I
+          never really climbed out of.
         </p>
 
         <p>
