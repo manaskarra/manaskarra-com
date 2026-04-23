@@ -360,20 +360,37 @@ function NeuralNet({ y }: { y: number }) {
 function HybridDisc() {
   const groupRef = useRef<THREE.Group>(null!);
 
-  useFrame((state) => {
+  useFrame((state, delta) => {
     const g = groupRef.current;
-    g.rotation.y += 0.005;
-    g.position.y = Math.sin(state.clock.elapsedTime * 0.55) * 0.07;
+    const t = state.clock.elapsedTime;
+
+    // Spinning-coin wobble: tilt vector precesses around Y axis.
+    // sin/cos at the same frequency traces a circle → the disc tilts and
+    // rotates that tilt direction slowly, exactly like a coin settling.
+    const TILT      = 0.26 + Math.sin(t * 0.12) * 0.04; // subtle nod
+    const PRECESS   = 0.38; // how fast the tilt direction rotates (rad/s)
+    const SPIN      = 1.1;  // disc self-spin speed (rad/s)
+
+    const wobbleX = Math.sin(t * PRECESS) * TILT;
+    const wobbleZ = Math.cos(t * PRECESS) * TILT;
+
+    // Lerp toward wobble target + mouse offset
     g.rotation.x = THREE.MathUtils.lerp(
       g.rotation.x,
-      state.mouse.y * 0.12,
-      0.04
+      wobbleX + state.mouse.y * 0.10,
+      0.05
     );
     g.rotation.z = THREE.MathUtils.lerp(
       g.rotation.z,
-      -state.mouse.x * 0.1,
-      0.04
+      wobbleZ - state.mouse.x * 0.08,
+      0.05
     );
+
+    // Fast self-spin (like a coin just dropped)
+    g.rotation.y += delta * SPIN;
+
+    // Gentle vertical float
+    g.position.y = Math.sin(t * 0.55) * 0.07;
   });
 
   return (
