@@ -59,12 +59,19 @@ function CVBlock() {
 
       <div className="border-t border-rule pt-6">
         <p className="uppercase tracking-[0.15em] text-[10px] text-fg-subtle/70 mb-3">
-          honors
+          honors & certs
         </p>
-        <div>
-          <p className="text-fg">UAE Golden Visa</p>
-          <p className="text-fg-subtle/90">distinction student</p>
-          <p className="tabular-nums text-fg-subtle/60 mt-0.5">2022</p>
+        <div className="space-y-4">
+          <div>
+            <p className="text-fg">UAE Golden Visa</p>
+            <p className="text-fg-subtle/90">distinction student</p>
+            <p className="tabular-nums text-fg-subtle/60 mt-0.5">2022</p>
+          </div>
+          <div>
+            <p className="text-fg">Trinity College London</p>
+            <p className="text-fg-subtle/90">grade 6 keyboard · distinction</p>
+            <p className="tabular-nums text-fg-subtle/60 mt-0.5">2017</p>
+          </div>
         </div>
       </div>
     </div>
