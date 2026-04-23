@@ -164,7 +164,7 @@ export function Scrobble() {
 
   return (
     <aside
-      aria-label="now playing"
+      aria-label="listening to"
       className="border-b border-rule bg-bg-elevated"
       data-tick={tick}
     >
@@ -204,7 +204,7 @@ export function Scrobble() {
           )}
           <ScrobbleBars playing={current.nowPlaying} />
           <span className="text-fg-subtle shrink-0 hidden sm:inline">
-            {current.nowPlaying ? "now playing" : "last played"}
+            {current.nowPlaying ? "listening to" : "last played"}
           </span>
           <span className="text-fg-subtle hidden sm:inline" aria-hidden="true">
             ·

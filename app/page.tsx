@@ -36,15 +36,12 @@ export default function HomePage() {
               hyd/ind
             </p>
             <p className="mt-6 text-fg-subtle text-[17px] sm:text-[19px] leading-relaxed max-w-[56ch]">
-              I build AI products, mess around with research, and make hiphop
-              beats as <span className="text-fg">sledg3r</span>. This is all of
-              it.
+              I build AI products and stay on top of the research behind them. I also produce music as <span className="text-fg">sledg3r</span>.
             </p>
 
-            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[12px]">
+            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2.5 font-mono text-[13.5px]">
               {site.social.map((s) => {
-                const opensNewTab =
-                  s.href.startsWith("http") || s.href.endsWith(".pdf");
+                const opensNewTab = s.href.startsWith("http");
                 return (
                   <li key={s.label}>
                     <a

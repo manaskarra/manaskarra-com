@@ -15,8 +15,8 @@
 
 /* dark — deeper, slight blue cast kept */
 :root[data-theme="dark"] {
-  --bg: #08080f;
-  --bg-elevated: #111119;
+  --bg: #060a12;
+  --bg-elevated: #0d1422;
   --fg: #eaeaef;
   --fg-muted: #9d9bfc;
   --fg-subtle: #7a7b96;
@@ -29,8 +29,8 @@
 /* honor OS preference before JS loads */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --bg: #08080f;
-    --bg-elevated: #111119;
+    --bg: #060a12;
+    --bg-elevated: #0d1422;
     --fg: #eaeaef;
     --fg-muted: #9d9bfc;
     --fg-subtle: #7a7b96;

@@ -3,7 +3,7 @@ export const site = {
   handle: "manaskarra",
   producerHandle: "sledg3r",
   location: "Dubai",
-  tagline: "manas / sledg3r",
+  tagline: "manaskarra",
   description:
     "Personal site of Manas Karra. I build AI products, poke at research, and make hip-hop beats as sledg3r.",
   url: "https://manaskarra.com",
@@ -16,7 +16,7 @@ export const site = {
     { href: "/projects", label: "projects" },
   ],
   social: [
-    { label: "resume", href: "/resume.pdf" },
+    { label: "resume", href: "/resume" },
     { label: "github", href: "https://github.com/manaskarra" },
     { label: "x", href: "https://x.com/manaskarra" },
     { label: "instagram", href: "https://www.instagram.com/sledg3r" },
