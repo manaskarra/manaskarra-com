@@ -15,7 +15,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <Section marker="§ 01 / home" as="header">
+      <Section marker="§ 00 / home" as="header">
         {/* On lg+ the name/text and vinyl sit side-by-side in a flex row.
             On smaller screens the vinyl drops below the social links. */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10">

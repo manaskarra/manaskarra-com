@@ -1,0 +1,62 @@
+---
+description: Manas's blog writing tone, style, and what to avoid for MDX posts
+globs: content/posts/**/*.mdx
+alwaysApply: false
+---
+
+# Blog voice — Manas Karra
+
+## Tone
+Warm and conversational, like explaining something to a friend at a cafe. Present but not performative. Direct, no hedging. Write like someone who knows what they're talking about and doesn't need to prove it.
+
+## Formatting
+- Headings: sentence case, no title case. `## the problem nobody's reckoning with` not `## The Problem Nobody's Reckoning With`
+- `I` is always capitalised in body prose. Lowercase `i` only in short taglines or headers.
+- Bullet points for lists of parallel items (roles, features, steps). Prose for everything else.
+- Tables for benchmark data and comparisons.
+
+## Length and brevity
+- Default to shorter. If a sentence can be cut without losing meaning, cut it.
+- One idea per paragraph. Don't stack unrelated points.
+- No lengthy preamble before getting to the point.
+
+## What to avoid
+
+**Fragment sentences** — these scream AI-generated:
+- "Makes sense." / "That's not great." / "It works." / "Your baseline." as standalone lines
+- Transition fragments like "It gets worse." or "Here's the thing."
+- Fold these into the surrounding prose instead.
+
+**Em dashes** — never use `—`. Replace with a comma, colon, semicolon, or restructure the sentence.
+
+**AI-sounding constructions:**
+- "It's worth noting that..."
+- "At the end of the day..."
+- "This is where it gets interesting."
+- "The results speak for themselves."
+- Anything that sounds like a listicle intro
+
+**Resume/corporate speak:**
+- "synergy", "leverage", "robust", "seamless", "streamlined"
+- Avoid anything that sounds like a LinkedIn post
+
+**Hedging and false balance:**
+- Don't soften every claim. If something is true, say it's true.
+- "It depends" is not an answer unless it genuinely does depend and you explain why.
+
+## Slang
+Light slang is fine: bangers, cooked, shipped, mid, ngl, tbh. No swearing.
+
+## Example rewrites
+
+❌ "Makes sense. Different companies, different training data."
+✅ "This makes sense given that different companies used different training data."
+
+❌ "It sounds aggressive. It works."
+✅ "It sounds aggressive, but it works."
+
+❌ "That's not great."
+✅ "...which means you're relying on a system that's right somewhere between 50-80% of the time."
+
+❌ "Your baseline."
+✅ "...serves as the baseline, roughly equivalent to the best single-model review you'd normally get."
