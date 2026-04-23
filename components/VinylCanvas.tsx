@@ -91,7 +91,6 @@ const LOGO_STICKERS: LogoDef[] = [
 ];
 
 function createLogoTexture(def: LogoDef): THREE.CanvasTexture {
-  if (typeof document === "undefined") return new THREE.CanvasTexture(document.createElement("canvas"));
   const SIZE = 128;
   const PAD = 18;
   const canvas = document.createElement("canvas");
