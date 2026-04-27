@@ -93,25 +93,9 @@ verdh's F1 of 40.0% would place it around #8 on the Martian offline leaderboard,
 
 A few standout PRs: on PR 17 (Discourse, dark theme CSS), verdh achieved 100% precision and 100% recall, finding all 3 bugs with zero false positives while Claude found them buried in 4 false positives and GPT buried them in 10. On PR 7 (Cal.com, OAuth sync), verdh hit 77% F1 and found all 5 golden bugs vs Claude's 56% and GPT's 40%. On PR 41 (Sentry, audit log pagination), verdh found all 3 bugs including Django negative slicing, auth token edge case, and datetime key type mismatch at 67% F1 vs Claude's 31%. The debate didn't win every PR, and on 2 out of 50, verdh scored lower than Claude solo because the consensus filtering removed a valid finding. Higher precision means occasionally filtering too aggressively, but across 50 PRs the math is clear.
 
-### can it actually pick a side
-
-I also tested on five architecture questions with no single right answer: Kafka vs RabbitMQ, monolith vs microservices, ORM vs raw SQL for analytics, bcrypt vs argon2 migration, REST vs gRPC vs events. Single models defaulted to 50% confidence on all of them and gave beautifully structured "it depends" answers, which is technically true but useless when you need to decide by Friday. verd debated to an average confidence of 77%, and on "monolith vs microservices for a 5-person fintech startup" it reached 93% with full consensus: start with a modular monolith, defer microservices until scale or compliance pain is proven. Each model contributed different reasoning, one citing the Segment case study, another giving specific migration-trigger thresholds, another warning about the "distributed monolith" antipattern. A recommendation argued from four different angles and stress-tested.
-
-### bug detection
-
-Five pieces of code with subtle bugs: TOCTOU race condition, pagination breaking on edge inputs, ReDoS-vulnerable regex, timezone-naive datetime comparison, mutable default argument. All three modes correctly identified these as buggy, but there's a meaningful difference between "this has a bug" at 50% confidence with one issue listed and "this has five specific bugs" at 94% confidence with each model's unique catches attributed.
-
-| mode | accuracy | avg confidence | avg issues found |
-|------|----------|----------------|-----------------|
-| Claude Sonnet | 5/5 | 50% | 1.2 |
-| GPT-5.4 | 5/5 | 50% | 2.8 |
-| **verd** | **5/5** | **94%** | **5.0** |
-
----
-
 ## the 12 unique catches
 
-Across those 5 bug-detection tests, individual models in the debate made 12 catches that were completely unique to them, issues only one model spotted while every other missed:
+Across 5 bug-detection tests (TOCTOU race condition, pagination edge cases, ReDoS regex, timezone comparison, mutable default argument), verd hit 94% average confidence vs 50% for single models, and found 5.0 issues on average vs 1.2-2.8. More importantly, individual models made 12 catches that were completely unique to them, issues only one model spotted while every other missed:
 
 | model | what only it caught |
 |-------|---------------------|
@@ -165,10 +149,6 @@ cat deploy.yaml | verd "any misconfigs that could expose prod?"
 Works as a CLI, an MCP server inside Claude Code and Cursor, and a Slack bot.
 
 [GitHub](https://github.com/manaskarra/verd) | [PyPI](https://pypi.org/project/verd/)
-
----
-
-On 50 real PRs from an independent benchmark, multi-model debate hits 40% F1 with zero domain-specific tuning, beating Claude Opus alone by 37% and GPT-5.4 alone by 83%. Different models have different blind spots, and structured debate surfaces all of them. If you've ever shipped something that one AI said was fine and it wasn't, give it a shot.
 
 ---
 
