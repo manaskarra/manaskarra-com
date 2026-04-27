@@ -5,11 +5,9 @@ excerpt: What happens when models don't just answer in parallel but actually cha
 tags: []
 ---
 
-I was reviewing auth code at work a few weeks ago and, with a tight deadline and everyone else heads-down, I did the obvious thing: pasted it into Claude and asked if it looked secure. Claude gave a thorough breakdown, flagged a couple of minor things, and said the implementation was solid. I was about to move on.
+A few weeks ago I pasted some auth code into Claude during a deadline crunch, got a thorough breakdown with a couple of minor flags, and was about to move on when something nagged at me. I threw the same code at GPT and got basically the same answer. On a whim I tried Gemini, and Gemini caught `verify_signature: False` sitting right there in the JWT config, something the other two had completely missed. The kind of bug that survives every code review, never shows up in tests, and eventually becomes a very bad day for someone.
 
-Something nagged at me, so I threw the same code at GPT. Basically the same answer. On a whim, I tried Gemini, and Gemini caught something the other two had completely missed: `verify_signature: False` sitting right there in the JWT config. The kind of thing that survives every code review, never shows up in tests, and eventually becomes a very bad day for someone.
-
-What bothered me wasn't that two models missed it. Models miss things, that's expected. What bothered me was that I had no way of knowing which one to trust. All three were equally confident, all three gave articulate well-structured reasoning, and two of them were wrong about the thing that mattered most. So I started wondering what it would look like to make AI models actually challenge each other instead of just giving parallel opinions, and that's how [verd](https://github.com/manaskarra/verd) happened.
+What bothered me wasn't that two models missed it. What bothered me was that all three were equally confident, equally articulate, and I had no way of knowing which one to trust. So I started wondering what it would look like to make them actually challenge each other instead of just giving parallel opinions, and that's how [verd](https://github.com/manaskarra/verd) happened.
 
 ---
 
