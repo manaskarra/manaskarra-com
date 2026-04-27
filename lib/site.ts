@@ -18,11 +18,9 @@ export const site = {
   social: [
     { label: "resume", href: "/resume" },
     { label: "linkedin", href: "https://www.linkedin.com/in/manas-karra/" },
-    { label: "github", href: "https://github.com/manaskarra" },
     { label: "x", href: "https://x.com/manaskarra" },
     { label: "instagram", href: "https://www.instagram.com/sledg3r" },
     { label: "youtube", href: "https://www.youtube.com/@sledg3r" },
-    { label: "beatstars", href: "https://www.beatstars.com/sledg3r" },
   ],
   emails: {
     primary: "manas.karra@gmail.com",
