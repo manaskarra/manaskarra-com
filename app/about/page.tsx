@@ -116,13 +116,12 @@ export default function AboutPage() {
           full-time that August. My work these days revolves around
           multi-agent systems and agentic tools that actually do work,
           and it&rsquo;s also where I love experimenting on my own time.
-          ML algorithms and big messy datasets are something I genuinely enjoy
-          getting into. Markets and finance are a whole other rabbit hole I
-          never really climbed out of.
+          Markets and finance are a whole other rabbit hole I never really
+          climbed out of.
         </p>
 
         <p>
-          I feel lucky to be building through whatever we end up calling this
+          I feel grateful to be building through whatever we end up calling this
           "AI revolution". I&rsquo;d rather contribute to it than
           narrate it from the sidelines, and I try to stay close to where
           things are going: papers, threads, the late-night demos people post
@@ -173,12 +172,6 @@ export default function AboutPage() {
           </a>
           , and a bunch have landed with upcoming artists I respect a lot.
           Still feels slightly unreal.
-        </p>
-
-        <p>
-          Outside of all that: playing and watching cricket and chess
-          religiously, anything at the intersection of AI and the wider tech
-          world, and music on in the background most of the day.
         </p>
 
         <h2>How to reach me</h2>
