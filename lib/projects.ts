@@ -14,7 +14,6 @@ export const projects: readonly Project[] = [
     year: "apr 2026",
     stack: ["Python", "agentic", "opportunity scoring", "repo analysis"],
     links: [
-      { label: "feed", href: "/gitbiz" },
       { label: "github", href: "https://github.com/manaskarra/gitbiz" },
     ],
   },
