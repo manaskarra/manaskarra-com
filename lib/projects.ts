@@ -8,17 +8,6 @@ export type Project = {
 
 export const projects: readonly Project[] = [
   {
-    title: "gitbiz",
-    description:
-      "LLM-powered discovery of GitHub repos with credible paths to revenue. Reads stars, issues, and contributor signal to surface open-source projects that could plausibly become businesses.",
-    year: "apr 2026",
-    stack: ["Python", "agentic", "opportunity scoring", "repo analysis"],
-    links: [
-      { label: "feed", href: "/gitbiz" },
-      { label: "github", href: "https://github.com/manaskarra/gitbiz" },
-    ],
-  },
-  {
     title: "verd",
     description:
       "Multi-LLM debate engine. Runs the same question past multiple models, surfaces where they disagree, and returns a higher-confidence answer with its reasoning trail intact.",

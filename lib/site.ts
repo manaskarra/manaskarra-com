@@ -14,7 +14,6 @@ export const site = {
     { href: "/about", label: "about" },
     { href: "/blog", label: "blog" },
     { href: "/projects", label: "projects" },
-    { href: "/gitbiz", label: "gitbiz" },
   ],
   social: [
     { label: "resume", href: "/resume" },
