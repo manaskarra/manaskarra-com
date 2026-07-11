@@ -3,7 +3,7 @@ import { getAllPostSlugs, getPostBySlug, formatPostDate } from "@/lib/posts";
 
 export const runtime = "nodejs";
 export const dynamicParams = false;
-export const alt = "blog post";
+export const alt = "Article by Manas Karra";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -35,8 +35,8 @@ export default async function OGImage({
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "80px",
-          background: "#faf9f6",
-          color: "#1e1b4b",
+          background: "#080b14",
+          color: "#f1f2f6",
           fontFamily:
             'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
         }}
@@ -47,7 +47,7 @@ export default async function OGImage({
             justifyContent: "space-between",
             alignItems: "center",
             fontSize: 22,
-            color: "#6b6992",
+            color: "#a3a7b8",
             fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
           }}
         >
@@ -68,7 +68,7 @@ export default async function OGImage({
               lineHeight: 1.1,
               letterSpacing: "-0.025em",
               fontWeight: 500,
-              color: "#1e1b4b",
+              color: "#f1f2f6",
               maxWidth: "95%",
               fontFamily: "Georgia, 'Times New Roman', serif",
             }}
@@ -82,7 +82,7 @@ export default async function OGImage({
                 display: "flex",
                 gap: 20,
                 fontSize: 22,
-                color: "#4f46e5",
+                color: "#8b88ff",
                 fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
               }}
             >
@@ -99,9 +99,9 @@ export default async function OGImage({
             alignItems: "center",
             justifyContent: "space-between",
             paddingTop: 24,
-            borderTop: "1px solid #e8e6da",
+            borderTop: "1px solid #282d3a",
             fontSize: 20,
-            color: "#6b6992",
+            color: "#a3a7b8",
             fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
           }}
         >
@@ -111,7 +111,7 @@ export default async function OGImage({
               display: "flex",
               alignItems: "center",
               gap: 8,
-              color: "#6366f1",
+              color: "#8b88ff",
             }}
           >
             <span>§</span>

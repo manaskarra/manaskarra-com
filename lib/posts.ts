@@ -6,6 +6,7 @@ import readingTime from "reading-time";
 export type PostFrontmatter = {
   title: string;
   date: string;
+  updated?: string;
   excerpt: string;
   tags: string[];
 };
@@ -46,6 +47,11 @@ function coerceDateField(value: unknown, slug: string): string {
   throw new Error(`post "${slug}" has invalid or missing date`);
 }
 
+function coerceOptionalDateField(value: unknown, slug: string): string | undefined {
+  if (value === undefined || value === null || value === "") return undefined;
+  return coerceDateField(value, slug);
+}
+
 function coerceTags(value: unknown): string[] {
   if (!Array.isArray(value)) return [];
   return value.filter((t): t is string => typeof t === "string" && t.length < 64);
@@ -68,6 +74,7 @@ function readPostFile(slug: string): Post | null {
 
   const title = assertStringField(data.title, "title", slug);
   const date = coerceDateField(data.date, slug);
+  const updated = coerceOptionalDateField(data.updated, slug);
   const excerpt = assertStringField(data.excerpt, "excerpt", slug);
 
   const stats = readingTime(content);
@@ -76,6 +83,7 @@ function readPostFile(slug: string): Post | null {
     slug,
     title,
     date,
+    updated,
     excerpt,
     tags: coerceTags(data.tags),
     readingTime: stats.text,

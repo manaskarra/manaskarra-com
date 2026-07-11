@@ -1,42 +1,35 @@
 ---
-title: Mandatory first post
+title: Why this site has two sides
 date: 2026-04-22
-excerpt: A short note on why this site exists, what's on it, and how it came together in an afternoon.
-tags: []
+updated: 2026-07-11
+excerpt: A short note on building one home for applied AI, hip-hop production, and everything I learn between the two.
+tags: [design, nextjs, notes]
 ---
 
-I don&rsquo;t really like &ldquo;welcome to my blog&rdquo; posts, so consider this the grounded version: a short note on what this site is, what it isn&rsquo;t, and how it got built.
+Most personal sites quietly sand their owner down to one clean label. Engineer. Designer. Producer. Pick the identity that looks best in a navigation bar and leave the rest for another profile.
 
-## What this site is
+That never felt right here.
 
-Four pages.
+## Side A, side B
 
-- **home:** a short hello plus what I last wrote and shipped
-- **about:** who I am and how to reach me
-- **projects:** what I&rsquo;ve actually shipped
-- **blog:** this page, and whatever follows
+My days revolve around applied AI: multi-agent systems, research papers, tools that have to work outside a demo, and the practical questions that show up once a model meets a real workflow.
 
-A live scrobble ticker sits under the header, showing what I&rsquo;m actually listening to via Last.fm. It only works because music is on most of the day &mdash; Last.fm just keeps count.
+After hours, I make hip-hop beats as **sledg3r**. That work uses a different vocabulary—samples, drums, pockets, melodies—but not a completely different part of my brain. Both start with listening closely, finding a pattern, and shaping a messy set of possibilities into something another person can use.
 
-Everything else is plain HTML, prerendered at build time. No database, no CMS, no newsletter popup, no AI chatbot in the corner asking if I&rsquo;d like help writing my own bio.
+So the site treats them like two sides of the same record rather than two unrelated résumés.
 
-## What it isn&rsquo;t
+## What is under the sleeve
 
-It isn&rsquo;t a template. I looked at a handful of personal sites I admire ([rauno.me](https://rauno.me), [paco.me](https://paco.me), [leerob.io](https://leerob.io)) and then started from an empty Next.js scaffold. The goal was Swiss-modern restraint: three fonts, one accent, a lot of whitespace, and not much else.
+The pages are built with Next.js and prerendered where they can be. Posts are MDX files in the repository, project data is plain TypeScript, and Last.fm supplies the small listening strip under the navigation. There is no database or CMS to maintain.
 
-## Typography as the signature
+The visual system is intentionally small: Fraunces for the expressive moments, Inter for reading, JetBrains Mono for the utility layer, cool paper or blue-black backgrounds, and one indigo signal running through both themes. The record in the hero is CSS and SVG, so the idea lands without asking a phone to render a miniature 3D scene forever.
 
-The only real design decision was letting the type carry it. Fraunces for anything you want to read slowly, Inter for body, JetBrains Mono for dates and the little § markers at the top of each page. Everything else stays out of the way: two colors per theme, one electric blue-purple accent for anything you can click, and enough whitespace to breathe.
+I wanted the site to feel designed but not decorated. The marginal notes, fine rules, and roomy type give the content structure; motion stays concentrated in the one object that actually represents the premise.
 
-If you&rsquo;re making your own site, one tip: pick a couple of fonts that look good together, then stop designing.
+## What belongs here
 
-## What&rsquo;s next
+The projects page is the proof: agentic research tools, multi-model experiments, generative music, and older computer-vision work. Writing is where the reasoning can stretch out—benchmarks, architecture choices, useful failures, and occasional notes from the music side.
 
-Rough idea of the type of stuff that&rsquo;ll go up here:
-
-1. A teardown of a multi-agent debate loop that actually improves answers
-2. Why prompt engineering is the wrong name for the thing we&rsquo;re doing
-3. Sampling 1970s soul records without getting sued
-4. Whatever else I can&rsquo;t stop thinking about at 11pm
+The list will change as the work does. That is the point of owning the surface.
 
 Thanks for stopping by.

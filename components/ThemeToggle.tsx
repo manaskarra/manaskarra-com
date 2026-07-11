@@ -1,15 +1,13 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+const emptySubscribe = () => () => {};
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 
   const isDark = mounted && resolvedTheme === "dark";
   const next = isDark ? "light" : "dark";
@@ -20,7 +18,7 @@ export function ThemeToggle() {
       onClick={() => setTheme(next)}
       aria-label={`switch to ${next} mode`}
       title={`switch to ${next} mode`}
-      className="group relative inline-flex items-center justify-center w-8 h-8 rounded-full text-fg-subtle hover:text-accent transition-colors cursor-pointer"
+      className="group relative inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-transparent text-fg-subtle transition-colors hover:border-rule hover:text-accent"
     >
       <span
         aria-hidden="true"

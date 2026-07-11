@@ -1,0 +1,103 @@
+.scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  perspective: 900px;
+}
+
+.record {
+  position: relative;
+  z-index: 1;
+  width: min(76%, 340px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 50%;
+  color: #c4c2ff;
+  background:
+    repeating-radial-gradient(circle at center, transparent 0 8px, rgba(255, 255, 255, 0.06) 9px, transparent 10px 14px),
+    radial-gradient(circle at 50% 50%, #171727 0 18%, #090a10 18.5% 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 -12px 36px rgba(0, 0, 0, 0.52) inset,
+    0 38px 42px rgba(2, 4, 15, 0.32);
+  transform-style: preserve-3d;
+  animation: float 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.record::before,
+.record::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.record::before {
+  inset: 9%;
+  border: 1px solid rgba(139, 136, 255, 0.34);
+  box-shadow:
+    0 0 0 18px rgba(139, 136, 255, 0.035),
+    0 0 0 48px rgba(139, 136, 255, 0.025);
+}
+
+.record::after {
+  z-index: 4;
+  inset: 45%;
+  background: var(--bg);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.28);
+}
+
+.sheen {
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 20deg,
+    transparent 0deg 38deg,
+    rgba(139, 136, 255, 0.13) 52deg,
+    transparent 78deg 166deg,
+    rgba(255, 255, 255, 0.08) 188deg,
+    transparent 214deg 360deg
+  );
+}
+
+.centerLabel {
+  position: absolute;
+  z-index: 3;
+  inset: 31%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #7774ff, #3734d3 58%, #22208e);
+  box-shadow: 0 0 34px rgba(91, 87, 240, 0.38);
+}
+
+.shadow {
+  position: absolute;
+  bottom: 11%;
+  width: 58%;
+  height: 8%;
+  border-radius: 50%;
+  background: rgba(3, 4, 13, 0.36);
+  filter: blur(16px);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: rotateX(57deg) rotateZ(-14deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotateX(53deg) rotateZ(-7deg) translate3d(0, -10px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .record {
+    animation: none;
+    transform: rotateX(55deg) rotateZ(-10deg);
+  }
+}

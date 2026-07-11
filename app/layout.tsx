@@ -31,9 +31,23 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: site.tagline,
-    template: `%s · ${site.tagline}`,
+    template: `%s — ${site.name}`,
   },
   description: site.description,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  publisher: site.name,
+  alternates: {
+    canonical: site.url,
+  },
+  keywords: [
+    "Manas Karra",
+    "Applied AI Engineer",
+    "agentic systems",
+    "multi-agent systems",
+    "sledg3r",
+    "music producer",
+  ],
   openGraph: {
     title: site.tagline,
     description: site.description,
@@ -47,10 +61,6 @@ export const metadata: Metadata = {
     title: site.tagline,
     description: site.description,
     creator: site.twitter,
-  },
-  robots: {
-    index: true,
-    follow: true,
   },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
@@ -75,9 +85,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <a href="#main-content" className="skip-link">skip to content</a>
           <Nav />
           <Scrobble />
-          <main className="flex-1 mx-auto w-full max-w-[1400px] px-6 sm:px-10 pt-10 sm:pt-16 pb-24">
+          <main id="main-content" className="mx-auto w-full max-w-[1320px] flex-1 px-5 pb-24 pt-10 sm:px-8 sm:pb-28 sm:pt-16 lg:px-10 lg:pt-20">
             <PageTransition>{children}</PageTransition>
           </main>
           <Footer />

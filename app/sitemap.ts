@@ -4,18 +4,18 @@ import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.url.replace(/\/$/, "");
-  const now = new Date().toISOString();
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${base}/`, lastModified: now, priority: 1 },
-    { url: `${base}/about`, lastModified: now, priority: 0.8 },
-    { url: `${base}/blog`, lastModified: now, priority: 0.9 },
-    { url: `${base}/projects`, lastModified: now, priority: 0.8 },
+    { url: `${base}/`, priority: 1 },
+    { url: `${base}/about`, priority: 0.8 },
+    { url: `${base}/blog`, priority: 0.9 },
+    { url: `${base}/projects`, priority: 0.8 },
+    { url: `${base}/resume`, priority: 0.6 },
   ];
 
   const postRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
     url: `${base}/blog/${post.slug}`,
-    lastModified: new Date(post.date).toISOString(),
+    lastModified: new Date(post.updated ?? post.date).toISOString(),
     priority: 0.7,
   }));
 

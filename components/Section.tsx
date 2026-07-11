@@ -30,8 +30,8 @@ export function Section({
   as: Tag = "section",
 }: SectionProps) {
   const classes = [
-    "grid grid-cols-1 md:grid-cols-[140px_1fr] lg:grid-cols-[180px_1fr]",
-    "gap-3 md:gap-10 lg:gap-16",
+    "grid min-w-0 grid-cols-1 lg:grid-cols-[132px_minmax(0,1fr)] xl:grid-cols-[156px_minmax(0,1fr)]",
+    "gap-5 lg:gap-10 xl:gap-14",
     className ?? "",
   ]
     .filter(Boolean)
@@ -42,21 +42,21 @@ export function Section({
   return (
     <Tag className={classes}>
       {hasAside && (
-        <aside className="md:sticky md:top-24 h-fit font-mono text-[11px] leading-relaxed text-fg-subtle select-none">
+        <div className="flex h-fit items-baseline justify-between gap-4 border-b border-rule pb-3 font-mono text-[11px] leading-relaxed text-fg-subtle lg:sticky lg:top-24 lg:block lg:border-0 lg:pb-0">
           {marker && (
-            <p className="whitespace-nowrap">
+            <p className="whitespace-nowrap text-fg-subtle">
               <span className="tabular-nums">{marker}</span>
             </p>
           )}
           {label && (
-            <p className="mt-1 uppercase tracking-wider text-[10px] text-fg-subtle/70">
+            <p className="text-[10px] uppercase tracking-[0.12em] text-fg-subtle lg:mt-1">
               {label}
             </p>
           )}
-          {sidebar && <div className="hidden md:block mt-10">{sidebar}</div>}
-        </aside>
+          {sidebar && <aside aria-label="Background" className="mt-10 hidden lg:block">{sidebar}</aside>}
+        </div>
       )}
-      <div className={hasAside ? "" : "md:col-start-2"}>{children}</div>
+      <div className={`min-w-0 ${hasAside ? "" : "lg:col-start-2"}`}>{children}</div>
     </Tag>
   );
 }

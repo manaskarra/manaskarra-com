@@ -1,8 +1,9 @@
 ---
 title: I made 5 AI models argue with each other
 date: 2026-04-23
+updated: 2026-07-11
 excerpt: What happens when models don't just answer in parallel but actually challenge each other's reasoning. Benchmarked on 50 real PRs.
-tags: []
+tags: [multi-agent, evaluation, engineering]
 ---
 
 A few weeks ago I pasted some auth code into Claude during a deadline crunch, got a thorough breakdown with a couple of minor flags, and was about to move on when something nagged at me. I threw the same code at GPT and got basically the same answer. On a whim I tried Gemini, and Gemini caught `verify_signature: False` sitting right there in the JWT config, something the other two had completely missed. The kind of bug that survives every code review, never shows up in tests, and eventually becomes a very bad day for someone.
@@ -31,7 +32,7 @@ This makes sense when you think about it: different companies, different trainin
 
 ## what verd actually does
 
-You give it a question and some context, like a code file, an architecture doc, or a config. It sends that to 4 models from different families, each assigned a specific role. They analyze independently in round 1, then see each other's responses and cross-examine in round 2. At the end, a stronger judge model reads the full debate transcript and synthesizes a verdict. In deep mode (`verdh`), it's 5 models including DeepSeek-R1 and a web-searching fact checker, across 3 rounds.
+You give it a question and some context, like a code file, an architecture doc, or a config. It sends that to 4 models from different families, each assigned a specific role. They analyze independently in round 1, then see each other's responses and cross-examine in round 2. At the end, a stronger judge model reads the full debate transcript and synthesizes a verdict. In deep mode (`verdh`), it adds a fifth reviewer—a web-searching fact checker—and runs 3 rounds.
 
 ### roles are what make it work
 
@@ -65,7 +66,10 @@ The judge (`o3` in standard and heavy, `o4-mini` in quick mode) reads the full t
 
 ## the architecture
 
-![verd multi-model debate architecture](/blog/verd-architecture.png)
+<figure>
+  <img src="/blog/verd-architecture.png" width="1024" height="723" alt="Verd multi-model debate architecture" />
+  <figcaption>Verd&rsquo;s reviewers analyze independently, cross-examine, and pass their evidence to a final judge.</figcaption>
+</figure>
 
 | command | models | rounds | speed | cost | when to use |
 |---------|--------|--------|-------|------|-------------|
@@ -91,9 +95,9 @@ verdh's F1 of 40.0% would place it around #8 on the Martian offline leaderboard,
 
 A few standout PRs: on PR 17 (Discourse, dark theme CSS), verdh achieved 100% precision and 100% recall, finding all 3 bugs with zero false positives while Claude found them buried in 4 false positives and GPT buried them in 10. On PR 7 (Cal.com, OAuth sync), verdh hit 77% F1 and found all 5 golden bugs vs Claude's 56% and GPT's 40%. On PR 41 (Sentry, audit log pagination), verdh found all 3 bugs including Django negative slicing, auth token edge case, and datetime key type mismatch at 67% F1 vs Claude's 31%. The debate didn't win every PR, and on 2 out of 50, verdh scored lower than Claude solo because the consensus filtering removed a valid finding. Higher precision means occasionally filtering too aggressively, but across 50 PRs the math is clear.
 
-## the 12 unique catches
+## the 10 unique catches
 
-Across 5 bug-detection tests (TOCTOU race condition, pagination edge cases, ReDoS regex, timezone comparison, mutable default argument), verd hit 94% average confidence vs 50% for single models, and found 5.0 issues on average vs 1.2-2.8. More importantly, individual models made 12 catches that were completely unique to them, issues only one model spotted while every other missed:
+Across 5 bug-detection tests (TOCTOU race condition, pagination edge cases, ReDoS regex, timezone comparison, mutable default argument), verd hit 94% average confidence vs 50% for single models, and found 5.0 issues on average vs 1.2-2.8. More importantly, individual models made 10 catches that were completely unique to them, issues only one model spotted while every other missed:
 
 | model | what only it caught |
 |-------|---------------------|
@@ -108,7 +112,7 @@ Across 5 bug-detection tests (TOCTOU race condition, pagination edge cases, ReDo
 | gpt-4.1 | `re.match` vs `re.fullmatch` (newlines bypass the pattern) |
 | gpt-4.1 | O(N) per-request cost and unbounded memory growth |
 
-Any single model would have caught at most 3-4 of these. The other 8-9 would have been invisible.
+Any single model would have caught at most 3-4 of these. Most of the rest would have been invisible.
 
 ---
 
@@ -116,7 +120,7 @@ Any single model would have caught at most 3-4 of these. The other 8-9 would hav
 
 It's most useful when you're making a "should we?" decision and want more than hedged opinions, when you're reviewing high-stakes code like auth flows or payment logic and want to catch the cases where any individual model would be confidently wrong, or when you need a defensible decision and "I ran this through 5 models, they debated for 3 rounds, 4 agreed, 1 dissented on X" is more defensible than "Claude said it's fine."
 
-Skip it for simple factual questions, for generating code (verd reviews, it doesn't write), or for anything where speed matters more than depth. Think of it like a code review from 5 senior engineers that costs $0.05-$0.30: you wouldn't run it on every line, you'd use it on the 3 decisions that actually matter.
+Skip it for simple factual questions, for generating code (verd reviews, it doesn't write), or for anything where speed matters more than depth. Think of it like a code review from several senior engineers that costs roughly $0.01-$0.40+, depending on the mode: you wouldn't run it on every line, you'd use it on the 3 decisions that actually matter.
 
 ---
 

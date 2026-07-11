@@ -1,73 +1,90 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { projects } from "@/lib/projects";
+import { site } from "@/lib/site";
 import { Section } from "@/components/Section";
+import { PageHeader } from "@/components/PageHeader";
 
 export const metadata: Metadata = {
-  title: "projects",
+  title: "Projects",
   description:
-    "A selection of things I've built. AI products at work, tools on the side, and the occasional experiment.",
+    "Selected AI, multi-agent, generative-music, and computer-vision projects by Manas Karra.",
+  alternates: { canonical: `${site.url}/projects` },
+  openGraph: {
+    title: "Selected work by Manas Karra",
+    description: "Agentic research tools, multi-model systems, generative music, and computer vision.",
+    url: `${site.url}/projects`,
+    siteName: site.name,
+    locale: "en_US",
+    type: "website",
+    images: [{ url: `${site.url}/opengraph-image`, width: 1200, height: 630, alt: "Selected work by Manas Karra" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Selected work by Manas Karra",
+    description: "Agentic research tools, multi-model systems, generative music, and computer vision.",
+    creator: site.twitter,
+    images: [{ url: `${site.url}/opengraph-image`, width: 1200, height: 630, alt: "Selected work by Manas Karra" }],
+  },
 };
 
 export default function ProjectsPage() {
   return (
-    <Section marker="§ 04 / projects" label={`${projects.length} selected`}>
-      <header>
-        <h1 className="font-serif text-[48px] sm:text-[64px] leading-[1.02] tracking-[-0.025em] text-fg">
-          Things I&rsquo;ve built.
-        </h1>
-        <p className="mt-6 text-fg-subtle text-[17px] leading-relaxed max-w-[52ch]">
-          A running list of what&rsquo;s shipped so far. I&rsquo;m still
-          researching and cooking on the next batch, so this page will grow.
-        </p>
-      </header>
+    <Section marker="02 / projects" label={`${projects.length} selected`}>
+      <PageHeader
+        eyebrow="built, tested, shipped"
+        title="Selected work."
+        description="Projects that made it from a curious question to something working—from agents that compare ideas to models that make music."
+      />
 
-      <ul className="mt-12">
-        {projects.map((p, i) => (
-          <li
-            key={p.title}
-            className="border-t border-rule py-5 sm:py-6 flex flex-col sm:flex-row sm:items-start sm:gap-8"
-            style={
-              i === projects.length - 1
-                ? { borderBottom: "1px solid var(--rule)" }
-                : undefined
-            }
-          >
-            <span className="font-mono text-[11px] text-fg-subtle sm:w-20 shrink-0 mb-2 sm:mb-0 sm:mt-1.5 tabular-nums whitespace-nowrap">
-              {p.year}
-            </span>
-            <div className="flex-1 max-w-[62ch]">
-              <div className="flex flex-wrap items-baseline justify-between gap-x-5 gap-y-1">
-                <h2 className="font-serif text-[22px] leading-snug tracking-tight text-fg">
-                  {p.title}
-                </h2>
-                {p.links.map((l) => (
-                  <a
-                    key={l.label}
-                    href={l.href}
-                    target={l.href.startsWith("http") ? "_blank" : undefined}
-                    rel={
-                      l.href.startsWith("http")
-                        ? "noopener noreferrer"
-                        : undefined
-                    }
-                    className="font-mono text-[11px] text-accent hover:text-accent-hover underline underline-offset-[4px] decoration-[1px] transition-colors"
-                  >
-                    {l.label} →
-                  </a>
-                ))}
+      <ol className="mt-14 border-t border-rule">
+        {projects.map((project, index) => (
+          <li key={project.title} className="editorial-row border-b border-rule py-7 sm:px-4 sm:py-9">
+            <article className="grid gap-5 sm:grid-cols-[56px_minmax(0,1fr)_auto] sm:gap-7">
+              <span className="font-mono text-[10px] tabular-nums text-fg-subtle">0{index + 1}</span>
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                  <h2 className="font-serif text-[30px] leading-tight tracking-[-0.025em] text-fg">{project.title}</h2>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.11em] text-accent">{project.category}</span>
+                </div>
+                <p className="mt-3 max-w-[68ch] text-[15px] leading-[1.7] text-fg-subtle">{project.description}</p>
+                <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[10px] text-fg-subtle" aria-label="technology stack">
+                  {project.stack.map((technology) => <li key={technology}>{technology}</li>)}
+                </ul>
+                <div className="mt-6 flex flex-wrap gap-5 font-mono text-[11px]">
+                  {project.links.map((link) =>
+                    link.href.startsWith("http") ? (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-link text-accent"
+                      >
+                        {link.label} ↗
+                      </a>
+                    ) : (
+                      <Link key={link.label} href={link.href} className="text-link text-accent">
+                        {link.label} →
+                      </Link>
+                    )
+                  )}
+                </div>
               </div>
-              <p className="mt-1.5 text-fg-subtle text-[14.5px] leading-relaxed">
-                {p.description}
-              </p>
-              <div className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] text-fg-subtle">
-                {p.stack.map((tech) => (
-                  <span key={tech}>{tech}</span>
-                ))}
-              </div>
-            </div>
+              <span className="font-mono text-[10px] text-fg-subtle sm:pt-2">{project.year}</span>
+            </article>
           </li>
         ))}
-      </ul>
+      </ol>
+
+      <div className="mt-12 flex flex-col justify-between gap-5 border-b border-rule pb-6 sm:flex-row sm:items-end">
+        <p className="max-w-[48ch] text-[14px] leading-relaxed text-fg-subtle">
+          The useful experiments usually start as a rough script. The rest of them live on GitHub while they find their shape.
+        </p>
+        <a href="https://github.com/manaskarra" target="_blank" rel="noopener noreferrer" className="text-link shrink-0 font-mono text-[11px] text-accent">
+          browse github ↗
+        </a>
+      </div>
     </Section>
   );
 }

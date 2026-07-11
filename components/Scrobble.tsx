@@ -113,7 +113,6 @@ function isPayload(value: unknown): value is Payload {
 
 export function Scrobble() {
   const [data, setData] = useState<Payload | null>(null);
-  const [mounted, setMounted] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [tick, setTick] = useState(0);
   const abortRef = useRef<AbortController | null>(null);
@@ -138,8 +137,7 @@ export function Scrobble() {
   }, []);
 
   useEffect(() => {
-    setMounted(true);
-    fetchNow();
+    const initialFetch = window.setTimeout(fetchNow, 0);
     const poll = setInterval(fetchNow, POLL_INTERVAL_MS);
     const tickInterval = setInterval(() => setTick((n) => n + 1), 30_000);
     const onVisible = () => {
@@ -147,6 +145,7 @@ export function Scrobble() {
     };
     document.addEventListener("visibilitychange", onVisible);
     return () => {
+      clearTimeout(initialFetch);
       clearInterval(poll);
       clearInterval(tickInterval);
       document.removeEventListener("visibilitychange", onVisible);
@@ -154,8 +153,24 @@ export function Scrobble() {
     };
   }, [fetchNow]);
 
-  if (!mounted || !data || !data.available || !data.current) {
-    return null;
+  if (!data) {
+    return (
+      <div className="h-[39px] border-b border-rule bg-bg-elevated" aria-hidden="true" />
+    );
+  }
+
+  if (!data.available || !data.current) {
+    return (
+      <aside aria-label="listening status" className="border-b border-rule bg-bg-elevated">
+        <div className="mx-auto flex h-[38px] w-full max-w-[1320px] items-center gap-3 px-5 font-mono text-[11px] text-fg-subtle sm:px-8 lg:px-10">
+          <ScrobbleBars playing={false} />
+          <span>last.fm is quiet right now</span>
+          <a href={LASTFM_PROFILE_URL} target="_blank" rel="noopener noreferrer" className="ml-auto hidden transition-colors hover:text-accent sm:inline">
+            profile ↗
+          </a>
+        </div>
+      </aside>
+    );
   }
 
   const { current, week } = data;
@@ -168,18 +183,17 @@ export function Scrobble() {
       className="border-b border-rule bg-bg-elevated"
       data-tick={tick}
     >
-      <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10">
-        <button
-          type="button"
-          onClick={() => hasWeek && setExpanded((v) => !v)}
-          aria-expanded={expanded}
-          aria-controls="scrobble-week"
-          className={`group w-full py-2.5 flex items-center gap-3 font-mono text-[11px] text-left transition-colors ${
-            hasWeek ? "hover:bg-fg/[0.02]" : ""
-          }`}
-          style={{ cursor: hasWeek ? "pointer" : "default" }}
-        >
-          {hasWeek && (
+      <div className="mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-10">
+        <div className="flex min-h-[38px] items-stretch gap-3 font-mono text-[11px]">
+          <button
+            type="button"
+            onClick={() => setExpanded((value) => !value)}
+            aria-expanded={hasWeek ? expanded : undefined}
+            aria-controls={expanded && hasWeek ? "scrobble-week" : undefined}
+            disabled={!hasWeek}
+            className="group flex min-w-0 flex-1 items-center gap-3 py-2 text-left disabled:cursor-default"
+          >
+            {hasWeek && (
             <span
               className={`shrink-0 inline-flex items-center justify-center w-4 h-4 leading-none transition-all duration-300 ease-out ${
                 expanded
@@ -201,66 +215,43 @@ export function Scrobble() {
                 <path d="M2 3.5 L5 6.5 L8 3.5" />
               </svg>
             </span>
-          )}
-          <ScrobbleBars playing={current.nowPlaying} />
-          <span className="text-fg-subtle shrink-0 hidden sm:inline">
-            {current.nowPlaying ? "listening to" : "last played"}
-          </span>
-          <span className="text-fg-subtle hidden sm:inline" aria-hidden="true">
-            ·
-          </span>
-          <span
-            className="truncate min-w-0"
-            title={`${current.artist} · ${current.title}`}
-          >
-            <span className="text-fg">{current.artist}</span>
-            <span className="text-fg-subtle"> · </span>
-            <span className="text-fg">{current.title}</span>
-          </span>
-          <span className="ml-auto flex items-center gap-3 shrink-0">
-            {!current.nowPlaying && timeLabel && (
-              <>
-                <span
-                  className="text-fg-subtle tabular-nums hidden md:inline"
-                  aria-hidden="true"
-                >
-                  {timeLabel}
-                </span>
-                <span
-                  className="text-fg-subtle/50 hidden md:inline"
-                  aria-hidden="true"
-                >
-                  ·
-                </span>
-              </>
             )}
-            <a
-              href={LASTFM_PROFILE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="text-fg-subtle hover:text-accent transition-colors hidden md:inline"
-              aria-label="last.fm profile"
-            >
-              last.fm ↗
-            </a>
-          </span>
-        </button>
+            <ScrobbleBars playing={current.nowPlaying} />
+            <span className="hidden shrink-0 text-fg-subtle sm:inline">
+              {current.nowPlaying ? "listening to" : "last played"}
+            </span>
+            <span className="hidden text-fg-subtle sm:inline" aria-hidden="true">·</span>
+            <span className="min-w-0 truncate" title={`${current.artist} · ${current.title}`}>
+              <span className="text-fg">{current.artist}</span>
+              <span className="text-fg-subtle"> · </span>
+              <span className="text-fg">{current.title}</span>
+            </span>
+            {!current.nowPlaying && timeLabel && (
+              <span className="ml-auto hidden shrink-0 tabular-nums text-fg-subtle md:inline" aria-hidden="true">
+                {timeLabel}
+              </span>
+            )}
+          </button>
+          <a
+            href={LASTFM_PROFILE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden shrink-0 items-center border-l border-rule pl-4 text-fg-subtle transition-colors hover:text-accent md:flex"
+            aria-label="last.fm profile"
+          >
+            last.fm ↗
+          </a>
+        </div>
 
-        <div
-          id="scrobble-week"
-          className="scrobble-panel overflow-hidden"
-          data-open={expanded ? "true" : "false"}
-        >
-          {hasWeek && week && (
-            <div className="pb-3 pt-1">
-              <p
-                className="font-mono text-[10px] uppercase tracking-[0.12em] text-fg-subtle/70 mb-2"
-                aria-hidden="true"
-              >
-                past 7 days
-              </p>
-              <dl className="font-mono text-[11px] space-y-1.5">
+        {expanded && hasWeek && week && (
+          <div id="scrobble-week" className="border-t border-rule pb-3 pt-3">
+            <p
+              className="mb-2 font-mono text-[10px] uppercase tracking-[0.12em] text-fg-subtle"
+              aria-hidden="true"
+            >
+              past 7 days
+            </p>
+            <dl className="space-y-1.5 font-mono text-[11px]">
                 {week.track && (
                   <WeekRow
                     label="track"
@@ -294,10 +285,9 @@ export function Scrobble() {
                     plays={week.album.plays}
                   />
                 )}
-              </dl>
-            </div>
-          )}
-        </div>
+            </dl>
+          </div>
+        )}
       </div>
     </aside>
   );
@@ -314,12 +304,12 @@ function WeekRow({
 }) {
   return (
     <div className="flex items-baseline gap-3">
-      <dt className="text-fg-subtle/70 w-14 shrink-0 uppercase tracking-wider text-[10px]">
+      <dt className="w-14 shrink-0 text-[10px] uppercase tracking-wider text-fg-subtle">
         {label}
       </dt>
       <dd className="flex-1 min-w-0 flex items-baseline gap-3">
         <span className="truncate min-w-0">{primary}</span>
-        <span className="text-fg-subtle/60 tabular-nums shrink-0 ml-auto">
+        <span className="ml-auto shrink-0 tabular-nums text-fg-subtle">
           {formatPlays(plays)}
         </span>
       </dd>
