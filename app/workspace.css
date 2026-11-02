@@ -22,6 +22,7 @@ body { margin: 0; }
 .workspace-nav-item .nav-external { margin-left: auto; width: 13px; height: 13px; }
 .workspace-pinned { margin-top: 33px; }
 .workspace-sidebar-bottom { margin-top: auto; padding: 24px 0 0; }
+.workspace-sidebar-bottom .sidebar-contact { margin: 0 0 12px; }
 .sidebar-location { padding: 0 12px; display: flex; justify-content: space-between; align-items: center; color: var(--fg-subtle); }
 .workspace-body { margin-left: var(--ws-sidebar-width); min-width: 0; }
 .workspace-topbar { position: sticky; top: 0; z-index: 20; height: 64px; display: flex; align-items: center; padding: 0 30px; background: var(--bg); font-size: 15px; color: var(--fg-subtle); }

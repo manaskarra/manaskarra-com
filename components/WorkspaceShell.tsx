@@ -78,9 +78,9 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
         <a className="workspace-nav-item" href="https://github.com/manaskarra" target="_blank" rel="noopener noreferrer"><WorkspaceIcon name="code" /><span>GitHub</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
         <a className="workspace-nav-item" href="https://www.linkedin.com/in/manas-karra/" target="_blank" rel="noopener noreferrer"><WorkspaceIcon name="linkedin" /><span>LinkedIn</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
         <a className="workspace-nav-item" href="https://www.youtube.com/@sledg3r" target="_blank" rel="noopener noreferrer"><WorkspaceIcon name="youtube" /><span>YouTube</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
-        <a className="workspace-nav-item" href="mailto:manas.karra@gmail.com"><WorkspaceIcon name="mail" /><span>Say hello</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
       </div>
       <div className="workspace-sidebar-bottom">
+        <a className="workspace-nav-item sidebar-contact" href="mailto:manas.karra@gmail.com"><WorkspaceIcon name="mail" /><span>Say hello</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
         <ListeningStrip />
         <div className="sidebar-location"><span className="ws-mono">Dubai, UAE</span><ThemeToggle /></div>
       </div>
