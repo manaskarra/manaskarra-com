@@ -10,7 +10,7 @@ import { WorkspaceIcon, type WorkspaceIconName } from "./WorkspaceIcon";
 
 const sections: { id: string; label: string; icon: WorkspaceIconName }[] = [
   { id: "overview", label: "Overview", icon: "home" },
-  { id: "work", label: "Selected work", icon: "folder" },
+  { id: "work", label: "Projects", icon: "folder" },
   { id: "experience", label: "Experience", icon: "briefcase" },
   { id: "writing", label: "Writing", icon: "note" },
   { id: "music", label: "Music", icon: "music" },
@@ -23,6 +23,8 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
   const menuButton = useRef<HTMLButtonElement>(null);
   const sidebar = useRef<HTMLElement>(null);
   const home = pathname === "/";
+  const SectionLink = home ? "a" : Link;
+  const sectionHref = (id: string) => `${home ? "" : "/"}#${id}`;
   const activeSection = home ? active : pathname.startsWith("/blog") ? "writing" : "";
   const currentLabel = home ? sections.find(section => section.id === active)?.label ?? "Overview" : pathname.startsWith("/blog/") ? "Writing / Article" : pathname === "/resume" ? "Résumé" : "Workspace";
 
@@ -61,30 +63,28 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
 
   return <div className="workspace-shell">
     <header className="workspace-mobile-header">
-      <Link href="/#overview" className="workspace-brand" onClick={() => setMenuOpen(false)}><Image src="/icon.svg" width={27} height={27} alt="" /> <span>Manas Karra</span></Link>
+      <SectionLink href={sectionHref("overview")} className="workspace-brand" onClick={() => setMenuOpen(false)}><Image src="/icon.svg" width={27} height={27} alt="" /> <span>Manas Karra</span></SectionLink>
       <div className="mobile-controls"><ThemeToggle /><button ref={menuButton} className="ws-icon-button" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="workspace-sidebar" onClick={() => setMenuOpen(!menuOpen)}><WorkspaceIcon name={menuOpen ? "close" : "menu"} /></button></div>
     </header>
     <aside ref={sidebar} className={`workspace-sidebar${menuOpen ? " is-open" : ""}`} id="workspace-sidebar">
-      <Link href="/#overview" className="workspace-brand desktop-brand" onClick={() => setMenuOpen(false)}><Image src="/icon.svg" width={31} height={31} alt="" /><span>Manas Karra<small>Personal workspace</small></span></Link>
+      <SectionLink href={sectionHref("overview")} className="workspace-brand desktop-brand" onClick={() => setMenuOpen(false)}><Image src="/icon.svg" width={31} height={31} alt="" /><span>Manas Karra</span></SectionLink>
       <nav className="workspace-navigation" aria-label="Main navigation">
-        <p className="ws-eyebrow">Workspace</p>
-        {sections.map(section => <Link key={section.id} href={`/#${section.id}`} className={`workspace-nav-item${activeSection === section.id ? " is-active" : ""}`} aria-current={activeSection === section.id ? "location" : undefined} onClick={() => setMenuOpen(false)}><WorkspaceIcon name={section.icon} /><span>{section.label}</span>{activeSection === section.id && <span className="nav-active-dot" />}</Link>)}
+        {sections.map(section => <SectionLink key={section.id} href={sectionHref(section.id)} className={`workspace-nav-item${activeSection === section.id ? " is-active" : ""}`} aria-current={activeSection === section.id ? "location" : undefined} onClick={() => setMenuOpen(false)}><WorkspaceIcon name={section.icon} /><span>{section.label}</span></SectionLink>)}
       </nav>
       <div className="workspace-pinned">
         <p className="ws-eyebrow">Pinned</p>
-        <ResumeButton className="workspace-nav-item"><WorkspaceIcon name="note" /><span>Résumé <small>2026</small></span></ResumeButton>
+        <ResumeButton className="workspace-nav-item"><WorkspaceIcon name="note" /><span>Résumé</span></ResumeButton>
         <a className="workspace-nav-item" href="https://github.com/manaskarra" target="_blank" rel="noopener noreferrer"><WorkspaceIcon name="code" /><span>GitHub</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
         <a className="workspace-nav-item" href="mailto:manas.karra@gmail.com"><WorkspaceIcon name="mail" /><span>Say hello</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
       </div>
       <div className="workspace-sidebar-bottom">
-        <a href="/#music" className="sidebar-music-link" onClick={() => setMenuOpen(false)}><span className="mini-meter" aria-hidden="true"><i /><i /><i /><i /></span><span>Also making music<small>sledg3r ↗</small></span></a>
         <div className="sidebar-location"><span className="ws-mono">Dubai, UAE</span><ThemeToggle /></div>
       </div>
     </aside>
     <div className="workspace-body">
-      <div className="workspace-topbar"><div className="workspace-breadcrumb"><WorkspaceIcon name="panel" /><Link href="/#overview">manas</Link><span>/</span><span className="breadcrumb-current">{currentLabel}</span></div><span className="workspace-address">manaskarra.com</span></div>
+      <div className="workspace-topbar"><span>{currentLabel}</span></div>
       <main id="main-content" className={home ? "workspace-document" : "workspace-document workspace-article"}>{children}</main>
-      <footer className="workspace-footer"><span>© {new Date().getFullYear()} Manas Karra</span><div><a href="https://www.linkedin.com/in/manas-karra/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://x.com/manaskarra" target="_blank" rel="noopener noreferrer">X ↗</a><a href="/#overview">Back to top ↑</a></div></footer>
+      <footer className="workspace-footer"><span>© {new Date().getFullYear()} Manas Karra</span><div><a href="https://www.linkedin.com/in/manas-karra/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://x.com/manaskarra" target="_blank" rel="noopener noreferrer">X ↗</a><SectionLink href={sectionHref("overview")}>Back to top ↑</SectionLink></div></footer>
     </div>
   </div>;
 }

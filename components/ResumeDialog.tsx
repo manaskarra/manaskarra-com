@@ -36,7 +36,7 @@ export function ResumeProvider({ children }: { children: ReactNode }) {
         </div>
         <div className="resume-mobile-summary">
           <h3>LLM systems &amp; AI platforms</h3>
-          <p>AI Engineer at Deriv since February 2025. Building production agents, analytics tools, and the services that connect them.</p>
+          <p>AI Engineer at Deriv, based in Dubai.</p>
           <dl><div><dt>Selected projects</dt><dd>verd · RagaXonic</dd></div><div><dt>Education</dt><dd>B.E. Computer Science<br />BITS Pilani, 2025</dd></div></dl>
           <p className="ws-muted">Open the one-page PDF for the complete résumé.</p>
         </div>

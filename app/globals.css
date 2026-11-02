@@ -1,34 +1,37 @@
 @import "tailwindcss";
 @import "./workspace.css";
 
-/* light — cool paper, deep ink, and one electric studio-light accent */
+/* Neutral surfaces and system typography, with a restrained violet accent. */
 :root {
-  --bg: #f4f5fb;
-  --bg-elevated: #fbfcff;
-  --fg: #111222;
+  --font-inter: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-fraunces: var(--font-inter);
+  --font-jetbrains-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --bg: #ffffff;
+  --bg-elevated: #f7f7f7;
+  --fg: #202020;
   --fg-muted: #4b45dc;
-  --fg-subtle: #5f6276;
-  --rule: #d9dce8;
+  --fg-subtle: #666666;
+  --rule: #e5e5e5;
   --accent: #4b45dc;
   --accent-hover: #3630b8;
   --accent-soft: #e7e7ff;
-  --code-bg: #e9ebf3;
+  --code-bg: #f1f1f1;
   --shadow: rgba(26, 28, 60, 0.08);
   color-scheme: light;
 }
 
-/* dark — blue-black studio, with text bright enough to stay comfortable */
+/* Dark mode */
 :root[data-theme="dark"] {
-  --bg: #080b14;
-  --bg-elevated: #0f1420;
-  --fg: #f1f2f6;
+  --bg: #171717;
+  --bg-elevated: #222222;
+  --fg: #ececec;
   --fg-muted: #9996ff;
-  --fg-subtle: #a3a7b8;
-  --rule: #282d3a;
+  --fg-subtle: #a0a0a0;
+  --rule: #333333;
   --accent: #8b88ff;
   --accent-hover: #aaa8ff;
   --accent-soft: #1b1d3d;
-  --code-bg: #151a27;
+  --code-bg: #242424;
   --shadow: rgba(0, 0, 0, 0.3);
   color-scheme: dark;
 }
@@ -36,16 +39,16 @@
 /* honor OS preference before JS loads */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --bg: #080b14;
-    --bg-elevated: #0f1420;
-    --fg: #f1f2f6;
+    --bg: #171717;
+    --bg-elevated: #222222;
+    --fg: #ececec;
     --fg-muted: #9996ff;
-    --fg-subtle: #a3a7b8;
-    --rule: #282d3a;
+    --fg-subtle: #a0a0a0;
+    --rule: #333333;
     --accent: #8b88ff;
     --accent-hover: #aaa8ff;
     --accent-soft: #1b1d3d;
-    --code-bg: #151a27;
+    --code-bg: #242424;
     --shadow: rgba(0, 0, 0, 0.3);
     color-scheme: dark;
   }
@@ -113,8 +116,8 @@ a {
   background: var(--fg);
   color: var(--bg);
   padding: 0.65rem 1rem;
-  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-  font-size: 0.75rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.875rem;
   transition: transform 160ms ease;
 }
 
@@ -165,8 +168,8 @@ a {
   gap: 0.65rem;
   border-radius: 999px;
   padding: 0.7rem 1.15rem;
-  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-  font-size: 0.75rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.875rem;
   transition: transform 180ms ease, border-color 180ms ease,
     background-color 180ms ease, color 180ms ease;
 }
@@ -426,8 +429,8 @@ hr {
 }
 
 [data-rehype-pretty-code-title] {
-  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
-  font-size: 0.75rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.875rem;
   color: var(--fg-subtle);
   padding: 0.5rem 1rem;
   border-bottom: 1px solid var(--rule);

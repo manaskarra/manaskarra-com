@@ -5,7 +5,7 @@ export const site = {
   location: "Dubai, UAE",
   tagline: "Manas Karra — AI engineer & producer",
   description:
-    "AI engineer at Deriv, building agents, analytics tools, and AI platforms. Making hip-hop as sledg3r. Based in Dubai.",
+    "AI engineer at Deriv, based in Dubai. Making hip-hop as sledg3r.",
   url: "https://manaskarra.com",
   twitter: "@manaskarra",
   lastfmUser: "manask_",

@@ -2,33 +2,42 @@
 
 import { useEffect, useState } from "react";
 import { WorkspaceIcon } from "./WorkspaceIcon";
+import { site } from "@/lib/site";
 
-type Track = { artist: string; title: string; nowPlaying: boolean };
+type Track = { artist: string; title: string; url: string };
+const chartUrl = `https://www.last.fm/user/${site.lastfmUser}/library/tracks?date_preset=LAST_7_DAYS`;
 
 export function ListeningStrip() {
   const [track, setTrack] = useState<Track | null>(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const controller = new AbortController();
     async function refresh() {
       if (document.visibilityState === "hidden") return;
       try {
-        const response = await fetch("/api/now-playing", { signal: controller.signal });
-        if (!response.ok) return;
+        const response = await fetch("/api/top-track", { signal: controller.signal });
+        if (!response.ok) throw new Error("Weekly chart unavailable");
         const data = await response.json();
-        const current = data?.current;
-        if (data?.available && current && typeof current.artist === "string" && typeof current.title === "string" && typeof current.nowPlaying === "boolean") setTrack(current);
-        else setTrack(null);
-      } catch { /* The profile link remains useful without a live feed. */ }
+        const weekly = data?.track;
+        setTrack(data?.available && weekly && typeof weekly.artist === "string" && typeof weekly.title === "string" && typeof weekly.url === "string" ? weekly : null);
+      } catch {
+        if (!controller.signal.aborted) setTrack(null);
+      } finally {
+        if (!controller.signal.aborted) setLoading(false);
+      }
     }
     void refresh();
-    const interval = window.setInterval(refresh, 60_000);
+    const interval = window.setInterval(refresh, 30 * 60_000);
     document.addEventListener("visibilitychange", refresh);
     return () => { controller.abort(); clearInterval(interval); document.removeEventListener("visibilitychange", refresh); };
   }, []);
-  return <a className="listening-strip" href="https://www.last.fm/user/manask_" target="_blank" rel="noopener noreferrer">
-    <span className="mini-meter" data-playing={track?.nowPlaying ?? false} aria-hidden="true"><i /><i /><i /><i /></span>
-    <span className="listening-label">{track ? track.nowPlaying ? "Listening to" : "Last played" : "On my headphones"}</span>
-    <span className="listening-track">{track ? `${track.artist} · ${track.title}` : "My listening history on Last.fm"}</span>
+  return <a className="listening-strip" href={track?.url || chartUrl} target="_blank" rel="noopener noreferrer">
+    <WorkspaceIcon name="music" />
+    <span className="listening-copy" aria-live="polite" aria-busy={loading}>
+      <span className="listening-label">Top track · Last 7 days</span>
+      <span className="listening-track">{track?.title ?? (loading ? "Loading weekly chart…" : "View my weekly chart on Last.fm")}</span>
+      {track && <span className="listening-artist">{track.artist}</span>}
+    </span>
     <WorkspaceIcon name="arrow" />
   </a>;
 }
