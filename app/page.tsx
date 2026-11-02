@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { HologramPortrait } from "@/components/HologramPortrait";
 import { site } from "@/lib/site";
 import { getAllPosts, formatPostDate } from "@/lib/posts";
@@ -40,9 +41,24 @@ export default function HomePage() {
     <section id="experience" className="workspace-section" aria-labelledby="experience-title">
       <div className="ws-section-heading"><h2 id="experience-title">Experience</h2><ResumeButton className="ws-small-link">Details in my CV <WorkspaceIcon name="arrow" /></ResumeButton></div>
       <div className="experience-list">
-        <article className="experience-entry"><div><h3>Deriv</h3><p>AI Engineer</p></div><span className="experience-date">Feb 2025 — present</span></article>
-        <article className="experience-entry"><div><h3>Impiger Technologies</h3><p>QA Analyst &amp; Tester</p></div><span className="experience-date">Jun — Aug 2023</span></article>
-        <article className="experience-entry"><div><h3>BITS Pilani</h3><p>B.E. Computer Science</p></div><span className="experience-date">2021 — 2025</span></article>
+        <article className="experience-entry">
+          <span className="experience-logo experience-logo-deriv"><Image src="/logos/deriv.webp" alt="" width={44} height={44} /></span>
+          <div className="experience-role"><h3>Deriv</h3><p>AI Engineer</p></div>
+          <span className="experience-date">Feb 2025 — present</span>
+        </article>
+        <article className="experience-entry">
+          <span className="experience-logo experience-logo-impiger" aria-hidden="true">
+            {/* Frame the symbol from the supplied wordmark without redrawing it. */}
+            <svg viewBox="32 220 145 247" width="21" height="36" overflow="hidden" focusable="false"><image href="/logos/impiger.webp" width="794" height="764" /></svg>
+          </span>
+          <div className="experience-role"><h3>Impiger Technologies</h3><p>QA Analyst &amp; Tester</p></div>
+          <span className="experience-date">Jun — Aug 2023</span>
+        </article>
+        <article className="experience-entry">
+          <span className="experience-logo experience-logo-bits"><Image src="/logos/bits-pilani.webp" alt="" width={36} height={36} /></span>
+          <div className="experience-role"><h3>BITS Pilani</h3><p>B.E. Computer Science</p></div>
+          <span className="experience-date">2021 — 2025</span>
+        </article>
       </div>
     </section>
 
