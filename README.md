@@ -4,6 +4,8 @@ Manas Karra's personal workspace: a one-page portfolio for AI engineering, proje
 
 A desktop sidebar, compact project summaries, and an accessible résumé dialog. System typography, a light theme, and near-black blue-grey dark surfaces follow the OS preference until changed. The music section links to YouTube, BeatStars, and Instagram. The sidebar includes pinned LinkedIn and YouTube links and the most-played Last.fm track from the past seven days. Experience and writing come before projects.
 
+The intro includes a transparent dithered portrait derived from the supplied looking-down photo, with a small chin lift. It uses a theme-coloured SVG mask with a single hover/focus sweep, tap-to-toggle on touch screens, and reduced-motion support. The original photos are not included in the repository.
+
 ## Run locally
 
 Requires Node.js 20.9 or newer.

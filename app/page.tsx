@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HologramPortrait } from "@/components/HologramPortrait";
 import { site } from "@/lib/site";
 import { getAllPosts, formatPostDate } from "@/lib/posts";
 import { ResumeButton } from "@/components/ResumeDialog";
@@ -22,6 +23,7 @@ export default function HomePage() {
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }} />
 
     <section id="overview" className="workspace-overview" aria-labelledby="overview-title">
+      <HologramPortrait />
       <h1 id="overview-title">Hi, I’m Manas.</h1>
       <p className="workspace-intro">
         I’m an AI engineer at <a href="https://deriv.com" target="_blank" rel="noopener noreferrer">Deriv</a>, based in Dubai.
