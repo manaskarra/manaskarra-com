@@ -6,11 +6,6 @@ import { getAllPosts, formatPostDate } from "@/lib/posts";
 import { ResumeButton } from "@/components/ResumeDialog";
 import { WorkspaceIcon } from "@/components/WorkspaceIcon";
 
-const visitedCountries = [
-  "UAE", "India", "Oman", "Bahrain", "Australia", "Turkey", "USA", "Kenya",
-  "Georgia", "Malaysia", "Singapore", "Thailand", "Kazakhstan", "Uzbekistan", "Sri Lanka",
-];
-
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -32,7 +27,8 @@ export default function HomePage() {
       <HologramPortrait />
       <h1 id="overview-title">Hi, I’m Manas.</h1>
       <p className="workspace-intro">
-        I love AI and music. Based in Dubai, making hip-hop as <a href="#music">sledg3r</a>.
+        I love AI and music. Based in Dubai, making hip-hop{" "}
+        <span className="ws-music-reference">as <a className="ws-music-link" href="#music">sledg3r</a>.</span>
       </p>
       <div className="workspace-hero-actions">
         <ResumeButton className="ws-button ws-button-primary">Résumé <WorkspaceIcon name="note" /></ResumeButton>
@@ -43,7 +39,7 @@ export default function HomePage() {
     </section>
 
     <section id="experience" className="workspace-section" aria-labelledby="experience-title">
-      <div className="ws-section-heading"><h2 id="experience-title">Experience</h2><ResumeButton className="ws-small-link">Details in my CV <WorkspaceIcon name="arrow" /></ResumeButton></div>
+      <div className="ws-section-heading"><h2 id="experience-title">Experience</h2></div>
       <div className="experience-list">
         <article className="experience-entry">
           <span className="experience-logo experience-logo-deriv"><Image src="/logos/deriv.svg" alt="" width={44} height={44} unoptimized /></span>
@@ -69,16 +65,16 @@ export default function HomePage() {
         <article className="project-row">
           <WorkspaceIcon name="folder" />
           <div>
-            <a className="project-title" href="https://github.com/manaskarra/gitbiz" target="_blank" rel="noopener noreferrer">gitbiz <WorkspaceIcon name="arrow" /></a>
-            <p>Finds GitHub projects with potential to become a business.</p>
+            <a className="project-title" href="https://github.com/manaskarra/verd" target="_blank" rel="noopener noreferrer">verd <WorkspaceIcon name="arrow" /></a>
+            <p>A code-review tool that gets AI models to challenge each other’s findings.</p>
+            <Link className="project-note-link" href="/blog/verd">How I built it</Link>
           </div>
         </article>
         <article className="project-row">
           <WorkspaceIcon name="folder" />
           <div>
-            <a className="project-title" href="https://github.com/manaskarra/verd" target="_blank" rel="noopener noreferrer">verd <WorkspaceIcon name="arrow" /></a>
-            <p>A code-review tool that gets AI models to challenge each other’s findings.</p>
-            <Link className="project-note-link" href="/blog/verd">How I built it</Link>
+            <a className="project-title" href="https://github.com/manaskarra/gitbiz" target="_blank" rel="noopener noreferrer">gitbiz <WorkspaceIcon name="arrow" /></a>
+            <p>Finds GitHub projects with potential to become a business.</p>
           </div>
         </article>
         <article className="project-row">
@@ -102,10 +98,10 @@ export default function HomePage() {
       </div>
     </section>
 
-    <section id="music" className="workspace-section workspace-music" aria-labelledby="music-title">
+    <section id="music" className="workspace-section" aria-labelledby="music-title">
       <div className="ws-section-heading"><h2 id="music-title">Music</h2></div>
       <div className="music-profile">
-        <WorkspaceIcon name="music" />
+        <WorkspaceIcon name="music" className="music-symbol" />
         <div>
           <h3>sledg3r</h3>
           <p>Making hip-hop beats in FL Studio. I love listening to music as much as making it.</p>
@@ -115,27 +111,6 @@ export default function HomePage() {
             <a href="https://www.instagram.com/sledg3r/" target="_blank" rel="noopener noreferrer">Instagram <WorkspaceIcon name="arrow" /></a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="about" className="workspace-section workspace-about" aria-labelledby="about-title">
-      <div className="ws-section-heading"><h2 id="about-title">A little more about me</h2></div>
-      <div className="personal-notes">
-        <p>I love getting lost in nature, especially in the mountains.</p>
-        <p>I play cricket as a fast bowler and watch a lot of it too. I also play table tennis — I competed at nationals in high school.</p>
-      </div>
-      <div className="travel-note">
-        <div className="travel-heading"><h3>{visitedCountries.length} countries visited</h3><span>Goal: 100</span></div>
-        <p className="travel-date">As of September 2026</p>
-        <progress className="travel-progress" value={visitedCountries.length} max={100} aria-label={`${visitedCountries.length} of 100 countries visited`} />
-        <details className="travel-countries">
-          <summary>Where I’ve been <WorkspaceIcon name="chevron" /></summary>
-          <ul>{visitedCountries.map(country => <li key={country}>{country}</li>)}</ul>
-        </details>
-      </div>
-      <div className="personal-footnote">
-        <p>Born in February 2004.</p>
-        <p>UAE Golden Visa holder since 2021, for academic distinction.</p>
       </div>
     </section>
 
