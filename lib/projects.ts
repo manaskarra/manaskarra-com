@@ -22,9 +22,9 @@ export const projects: readonly Project[] = [
   {
     title: "verd",
     description:
-      "Multi-LLM debate engine. Runs the same question past multiple models, surfaces where they disagree, and returns a higher-confidence answer with its reasoning trail intact.",
+      "Multi-model code review engine. Up to five independent reviewers cross-examine findings before a judge synthesizes the evidence. Available as a Python package, CLI, MCP server, and Slack integration.",
     year: "mar 2026",
-    category: "multi-agent ai",
+    category: "multi-model code review",
     stack: ["Python", "multi-model", "llm-as-a-judge", "consensus"],
     links: [
       { label: "case study", href: "/blog/verd" },

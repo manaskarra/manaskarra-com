@@ -2,10 +2,10 @@ export const site = {
   name: "Manas Karra",
   handle: "manaskarra",
   producerHandle: "sledg3r",
-  location: "Dubai ↔ Hyderabad",
-  tagline: "Manas Karra — Applied AI engineer & producer",
+  location: "Dubai, UAE",
+  tagline: "Manas Karra — AI engineer & producer",
   description:
-    "Manas Karra is an Applied AI Engineer building agentic systems and a hip-hop producer releasing music as sledg3r.",
+    "AI engineer at Deriv, building agents, analytics tools, and AI platforms. Making hip-hop as sledg3r. Based in Dubai.",
   url: "https://manaskarra.com",
   twitter: "@manaskarra",
   lastfmUser: "manask_",

@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
+import { WorkspaceShell } from "@/components/WorkspaceShell";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { Scrobble } from "@/components/Scrobble";
-import { PageTransition } from "@/components/PageTransition";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -75,6 +72,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} h-full`}
       suppressHydrationWarning
     >
@@ -86,12 +84,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <a href="#main-content" className="skip-link">skip to content</a>
-          <Nav />
-          <Scrobble />
-          <main id="main-content" className="mx-auto w-full max-w-[1320px] flex-1 px-5 pb-24 pt-10 sm:px-8 sm:pb-28 sm:pt-16 lg:px-10 lg:pt-20">
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <Footer />
+          <WorkspaceShell>{children}</WorkspaceShell>
         </ThemeProvider>
       </body>
     </html>

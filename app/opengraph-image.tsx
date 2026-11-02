@@ -1,49 +1,26 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Manas Karra — Applied AI engineer and music producer";
+export const alt = "Manas Karra — AI engineer at Deriv. Music as sledg3r.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default function OpenGraphImage() {
   return new ImageResponse(
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        position: "relative",
-        overflow: "hidden",
-        background: "#080b14",
-        color: "#f1f2f6",
-        padding: "72px 80px",
-        fontFamily: "ui-sans-serif, system-ui, sans-serif",
-      }}
-    >
-      <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", width: "68%" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14, color: "#8b88ff", fontSize: 22, fontFamily: "ui-monospace, monospace" }}>
-          <span>MK</span>
-          <span style={{ color: "#a3a7b8" }}>dxb ↔ hyd</span>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 26 }}>
-          <div style={{ display: "flex", alignItems: "baseline", fontFamily: "Georgia, serif", fontSize: 94, lineHeight: 0.9, letterSpacing: "-0.055em" }}>
-            Manas Karra<span style={{ color: "#8b88ff" }}>.</span>
-          </div>
-          <div style={{ color: "#a3a7b8", fontSize: 28, lineHeight: 1.45, maxWidth: 650 }}>
-            Applied AI engineer. Hip-hop producer. Two sides of the same curious brain.
-          </div>
-        </div>
-        <div style={{ display: "flex", gap: 24, color: "#a3a7b8", fontSize: 18, fontFamily: "ui-monospace, monospace" }}>
-          <span>systems / sound</span>
-          <span style={{ color: "#8b88ff" }}>manaskarra.com</span>
-        </div>
+    <div style={{ width: "100%", height: "100%", display: "flex", background: "#080b14", color: "#f1f2f6", fontFamily: "sans-serif" }}>
+      <div style={{ width: 238, height: "100%", padding: "43px 28px", display: "flex", flexDirection: "column", background: "#0e121d", borderRight: "1px solid #282d3a", fontSize: 18 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 58 }}><div style={{ padding: "8px 10px", border: "1px solid #282d3a", borderRadius: 7, color: "#8b88ff" }}>mk</div><span>Manas Karra</span></div>
+        <div style={{ color: "#a3a7b8", fontSize: 12, letterSpacing: 2, marginBottom: 17 }}>WORKSPACE</div>
+        {["Overview", "Selected work", "Experience", "Writing", "Music"].map((label, i) => <div key={label} style={{ padding: "13px 12px", borderRadius: 5, marginBottom: 5, background: i === 0 ? "#1e223a" : "transparent", color: i === 0 ? "#f1f2f6" : "#a3a7b8" }}>{label}</div>)}
+        <div style={{ marginTop: "auto", fontSize: 14, color: "#a3a7b8" }}>Dubai, UAE</div>
       </div>
-
-      <div style={{ position: "absolute", width: 420, height: 420, borderRadius: "50%", right: -35, top: 105, display: "flex", alignItems: "center", justifyContent: "center", background: "repeating-radial-gradient(circle, #0b0d16 0 18px, #242633 19px, #0b0d16 21px 32px)", border: "2px solid #282d3a", boxShadow: "0 0 90px rgba(139,136,255,.22)" }}>
-        <div style={{ width: 138, height: 138, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: "#4b45dc", color: "white", fontFamily: "ui-monospace, monospace", fontSize: 24 }}>
-          ai / 808
-        </div>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "48px 66px" }}>
+        <div style={{ color: "#a3a7b8", fontSize: 16 }}>manas / overview</div>
+        <div style={{ marginTop: 65, color: "#8b88ff", fontSize: 15, letterSpacing: 3 }}>AI ENGINEER · DUBAI</div>
+        <div style={{ display: "flex", marginTop: 22, fontSize: 68, letterSpacing: -3 }}>Hi, I’m Manas<span style={{ color: "#8b88ff" }}>.</span></div>
+        <div style={{ marginTop: 20, fontSize: 25, lineHeight: 1.7, maxWidth: 680, color: "#a3a7b8" }}>I build agents, analytics tools, and the services that keep them running.</div>
+        <div style={{ marginTop: 30, fontSize: 19 }}>Currently at Deriv. Music as sledg3r.</div>
+        <div style={{ marginTop: "auto", paddingTop: 25, borderTop: "1px solid #282d3a", fontSize: 16, color: "#8b88ff" }}>manaskarra.com</div>
       </div>
-    </div>,
-    size
+    </div>, size
   );
 }

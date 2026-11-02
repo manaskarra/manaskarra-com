@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./workspace.css";
 
 /* light — cool paper, deep ink, and one electric studio-light accent */
 :root {
@@ -80,38 +81,6 @@ body {
   color: var(--fg);
   transition: background-color 240ms ease, color 240ms ease;
   overflow-x: clip;
-}
-
-/* ——— grain overlay ———
-   Static SVG turbulence filter rendered once, tiled, and fixed to the
-   viewport so it sits consistently over everything regardless of scroll.
-   Opacity is deliberately tiny (3-5%) so it reads as analog warmth, not
-   texture; imperceptible on text but visible on solid bg areas. No
-   animation, zero CPU cost beyond initial paint. Pointer-events none so
-   it never intercepts clicks. */
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.055;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 140px 140px;
-}
-
-/* Dark mode: noise is much higher contrast against the deep bg, so it
-   reads sharper at the same opacity. Dial it down significantly. */
-:root[data-theme="dark"] body::after {
-  opacity: 0.035;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) body::after {
-    opacity: 0.035;
-  }
 }
 
 ::selection {
