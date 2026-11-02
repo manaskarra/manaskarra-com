@@ -7,7 +7,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: site.tagline,
+    default: site.name,
     template: `%s — ${site.name}`,
   },
   description: site.description,
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "music producer",
   ],
   openGraph: {
-    title: site.tagline,
+    title: site.name,
     description: site.description,
     url: site.url,
     siteName: site.name,
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: site.tagline,
+    title: site.name,
     description: site.description,
     creator: site.twitter,
   },
