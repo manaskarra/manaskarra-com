@@ -32,7 +32,7 @@ export default function HomePage() {
       </p>
       <div className="workspace-hero-actions">
         <ResumeButton className="ws-button ws-button-primary">Résumé <WorkspaceIcon name="note" /></ResumeButton>
-        <a className="ws-text-action" href={`mailto:${site.emails.primary}`}>Email me <WorkspaceIcon name="arrow" /></a>
+        <a className="ws-text-action" href="https://github.com/manaskarra" target="_blank" rel="noopener noreferrer">GitHub <WorkspaceIcon name="arrow" /></a>
         <a className="ws-text-action" href="https://www.linkedin.com/in/manas-karra/" target="_blank" rel="noopener noreferrer">LinkedIn <WorkspaceIcon name="arrow" /></a>
         <a className="ws-text-action" href="https://x.com/manaskarra" target="_blank" rel="noopener noreferrer">X <WorkspaceIcon name="arrow" /></a>
       </div>
