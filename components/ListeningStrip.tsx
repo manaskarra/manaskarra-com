@@ -5,7 +5,7 @@ import { WorkspaceIcon } from "./WorkspaceIcon";
 import { site } from "@/lib/site";
 
 type Track = { artist: string; title: string; url: string };
-const chartUrl = `https://www.last.fm/user/${site.lastfmUser}/library/tracks?date_preset=LAST_7_DAYS`;
+const profileUrl = `https://www.last.fm/user/${site.lastfmUser}`;
 
 export function ListeningStrip() {
   const [track, setTrack] = useState<Track | null>(null);
@@ -31,11 +31,11 @@ export function ListeningStrip() {
     document.addEventListener("visibilitychange", refresh);
     return () => { controller.abort(); clearInterval(interval); document.removeEventListener("visibilitychange", refresh); };
   }, []);
-  return <a className="listening-strip" href={track?.url || chartUrl} title={track ? `${track.title} — ${track.artist}` : "Last.fm weekly chart"} target="_blank" rel="noopener noreferrer">
+  return <a className="listening-strip" href={profileUrl} title="View my Last.fm profile" target="_blank" rel="noopener noreferrer">
     <WorkspaceIcon name="music" />
     <span className="listening-copy" aria-live="polite" aria-busy={loading}>
       <span className="listening-label">Top track · Last 7 days</span>
-      <span className="listening-track">{track?.title ?? (loading ? "Loading weekly chart…" : "View my weekly chart on Last.fm")}</span>
+      <span className="listening-track">{track?.title ?? (loading ? "Loading weekly chart…" : "View my Last.fm profile")}</span>
       {track && <span className="listening-artist">{track.artist}</span>}
     </span>
     <WorkspaceIcon name="arrow" />

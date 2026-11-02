@@ -14,6 +14,7 @@ const sections: { id: string; label: string; icon: WorkspaceIconName }[] = [
   { id: "work", label: "Projects", icon: "folder" },
   { id: "writing", label: "Writing", icon: "note" },
   { id: "music", label: "Music", icon: "music" },
+  { id: "about", label: "About me", icon: "person" },
 ];
 
 function WorkspaceFrame({ children }: { children: ReactNode }) {
@@ -38,7 +39,7 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
         const element = document.getElementById(section.id);
         if (element && element.getBoundingClientRect().top <= 180) current = section.id;
       }
-      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = "music";
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = sections[sections.length - 1].id;
       setActive(current);
     };
     const scroll = () => { if (!scheduled) { scheduled = true; requestAnimationFrame(update); } };

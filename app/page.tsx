@@ -6,6 +6,11 @@ import { getAllPosts, formatPostDate } from "@/lib/posts";
 import { ResumeButton } from "@/components/ResumeDialog";
 import { WorkspaceIcon } from "@/components/WorkspaceIcon";
 
+const visitedCountries = [
+  "UAE", "India", "Oman", "Bahrain", "Australia", "Turkey", "USA", "Kenya",
+  "Georgia", "Malaysia", "Singapore", "Thailand", "Kazakhstan", "Uzbekistan", "Sri Lanka",
+];
+
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -27,8 +32,7 @@ export default function HomePage() {
       <HologramPortrait />
       <h1 id="overview-title">Hi, I’m Manas.</h1>
       <p className="workspace-intro">
-        I’m an AI engineer at <a href="https://deriv.com" target="_blank" rel="noopener noreferrer">Deriv</a>, based in Dubai.
-        I also produce hip-hop as <a href="#music">sledg3r</a>.
+        I love AI and music. Based in Dubai, making hip-hop as <a href="#music">sledg3r</a>.
       </p>
       <div className="workspace-hero-actions">
         <ResumeButton className="ws-button ws-button-primary">Résumé <WorkspaceIcon name="note" /></ResumeButton>
@@ -42,20 +46,17 @@ export default function HomePage() {
       <div className="ws-section-heading"><h2 id="experience-title">Experience</h2><ResumeButton className="ws-small-link">Details in my CV <WorkspaceIcon name="arrow" /></ResumeButton></div>
       <div className="experience-list">
         <article className="experience-entry">
-          <span className="experience-logo experience-logo-deriv"><Image src="/logos/deriv.webp" alt="" width={44} height={44} /></span>
+          <span className="experience-logo experience-logo-deriv"><Image src="/logos/deriv.svg" alt="" width={44} height={44} unoptimized /></span>
           <div className="experience-role"><h3>Deriv</h3><p>AI Engineer</p></div>
           <span className="experience-date">Feb 2025 — present</span>
         </article>
         <article className="experience-entry">
-          <span className="experience-logo experience-logo-impiger" aria-hidden="true">
-            {/* Frame the symbol from the supplied wordmark without redrawing it. */}
-            <svg viewBox="32 220 145 247" width="21" height="36" overflow="hidden" focusable="false"><image href="/logos/impiger.webp" width="794" height="764" /></svg>
-          </span>
+          <span className="experience-logo experience-logo-impiger"><Image src="/logos/impiger.svg" alt="" width={22} height={36} unoptimized /></span>
           <div className="experience-role"><h3>Impiger Technologies</h3><p>QA Analyst &amp; Tester</p></div>
           <span className="experience-date">Jun — Aug 2023</span>
         </article>
         <article className="experience-entry">
-          <span className="experience-logo experience-logo-bits"><Image src="/logos/bits-pilani.webp" alt="" width={36} height={36} /></span>
+          <span className="experience-logo experience-logo-bits"><Image src="/logos/bits-pilani.svg" alt="" width={36} height={36} unoptimized /></span>
           <div className="experience-role"><h3>BITS Pilani</h3><p>B.E. Computer Science</p></div>
           <span className="experience-date">2021 — 2025</span>
         </article>
@@ -107,13 +108,34 @@ export default function HomePage() {
         <WorkspaceIcon name="music" />
         <div>
           <h3>sledg3r</h3>
-          <p>Hip-hop production in FL Studio.</p>
+          <p>Making hip-hop beats in FL Studio. I love listening to music as much as making it.</p>
           <div className="music-links">
             <a href="https://www.youtube.com/@sledg3r" target="_blank" rel="noopener noreferrer">YouTube <WorkspaceIcon name="arrow" /></a>
             <a href="https://www.beatstars.com/sledg3r" target="_blank" rel="noopener noreferrer">BeatStars <WorkspaceIcon name="arrow" /></a>
             <a href="https://www.instagram.com/sledg3r/" target="_blank" rel="noopener noreferrer">Instagram <WorkspaceIcon name="arrow" /></a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="about" className="workspace-section workspace-about" aria-labelledby="about-title">
+      <div className="ws-section-heading"><h2 id="about-title">A little more about me</h2></div>
+      <div className="personal-notes">
+        <p>I love getting lost in nature, especially in the mountains.</p>
+        <p>I play cricket as a fast bowler and watch a lot of it too. I also play table tennis — I competed at nationals in high school.</p>
+      </div>
+      <div className="travel-note">
+        <div className="travel-heading"><h3>{visitedCountries.length} countries visited</h3><span>Goal: 100</span></div>
+        <p className="travel-date">As of September 2026</p>
+        <progress className="travel-progress" value={visitedCountries.length} max={100} aria-label={`${visitedCountries.length} of 100 countries visited`} />
+        <details className="travel-countries">
+          <summary>Where I’ve been <WorkspaceIcon name="chevron" /></summary>
+          <ul>{visitedCountries.map(country => <li key={country}>{country}</li>)}</ul>
+        </details>
+      </div>
+      <div className="personal-footnote">
+        <p>Born in February 2004.</p>
+        <p>UAE Golden Visa holder since 2021, for academic distinction.</p>
       </div>
     </section>
 
