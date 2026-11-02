@@ -2,7 +2,7 @@
 
 Manas Karra's personal workspace: a one-page portfolio for AI engineering, projects, writing, and music as sledg3r.
 
-A desktop sidebar, compact project summaries, and an accessible résumé dialog. System typography and near-black blue-grey surfaces keep the workspace in dark mode. The music section links to YouTube, BeatStars, and Instagram. The sidebar includes pinned LinkedIn and YouTube links, with Say hello above the most-played Last.fm track from the past seven days. Experience and writing come before projects.
+A desktop sidebar, compact project summaries, and an accessible résumé dialog. System typography and near-black blue-grey surfaces keep the workspace in dark mode. The music section links to YouTube, BeatStars, and Instagram. The sidebar includes pinned LinkedIn and YouTube links, with Say hello above the most-played Last.fm track from the past seven days. Sections follow the order Experience, Projects, Writing, and Music; projects include gitbiz, verd, and RagaXonic.
 
 The intro includes a transparent dithered portrait derived from the supplied looking-down photo, with a small chin lift. It uses a theme-coloured SVG mask with a single hover/focus sweep, tap-to-toggle on touch screens, and reduced-motion support. The original photos are not included in the repository.
 

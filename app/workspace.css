@@ -11,6 +11,8 @@ body { margin: 0; }
 .ws-muted { color: var(--fg-subtle); }
 .workspace-sidebar { position: fixed; z-index: 30; inset: 0 auto 0 0; width: var(--ws-sidebar-width); background: var(--ws-sidebar); padding: 26px 14px 14px; display: flex; flex-direction: column; overflow-y: auto; }
 .workspace-brand { display: flex; align-items: center; gap: 11px; color: var(--fg); font-size: 16px; font-weight: 500; }
+.workspace-brand-copy { display: flex; flex-direction: column; line-height: 1.35; }
+.workspace-brand-copy small { font-size: 12px; font-weight: 400; color: var(--fg-subtle); }
 .desktop-brand { padding: 0 12px; }
 .workspace-brand img { border-radius: 8px; }
 .workspace-navigation { margin-top: 36px; }

@@ -62,20 +62,16 @@ export default function HomePage() {
       </div>
     </section>
 
-    <section id="writing" className="workspace-section" aria-labelledby="writing-title">
-      <div className="ws-section-heading"><h2 id="writing-title">Writing</h2></div>
-      <div className="workspace-notes">
-        {posts.map(post => <Link href={`/blog/${post.slug}`} key={post.slug} className="workspace-note">
-          <WorkspaceIcon name="note" />
-          <div><h3>{post.title}</h3><time dateTime={post.date}>{formatPostDate(post.date)}</time></div>
-          <WorkspaceIcon name="arrow" />
-        </Link>)}
-      </div>
-    </section>
-
     <section id="work" className="workspace-section" aria-labelledby="work-title">
       <div className="ws-section-heading"><h2 id="work-title">Projects</h2></div>
       <div className="workspace-projects">
+        <article className="project-row">
+          <WorkspaceIcon name="folder" />
+          <div>
+            <a className="project-title" href="https://github.com/manaskarra/gitbiz" target="_blank" rel="noopener noreferrer">gitbiz <WorkspaceIcon name="arrow" /></a>
+            <p>Finds GitHub projects with potential to become a business.</p>
+          </div>
+        </article>
         <article className="project-row">
           <WorkspaceIcon name="folder" />
           <div>
@@ -91,6 +87,17 @@ export default function HomePage() {
             <p>Generating music with Hindustani ragas and Western harmony.</p>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section id="writing" className="workspace-section" aria-labelledby="writing-title">
+      <div className="ws-section-heading"><h2 id="writing-title">Writing</h2></div>
+      <div className="workspace-notes">
+        {posts.map(post => <Link href={`/blog/${post.slug}`} key={post.slug} className="workspace-note">
+          <WorkspaceIcon name="note" />
+          <div><h3>{post.title}</h3><time dateTime={post.date}>{formatPostDate(post.date)}</time></div>
+          <WorkspaceIcon name="arrow" />
+        </Link>)}
       </div>
     </section>
 

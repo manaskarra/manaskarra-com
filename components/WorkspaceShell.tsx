@@ -11,8 +11,8 @@ import { WorkspaceIcon, type WorkspaceIconName } from "./WorkspaceIcon";
 const sections: { id: string; label: string; icon: WorkspaceIconName }[] = [
   { id: "overview", label: "Overview", icon: "home" },
   { id: "experience", label: "Experience", icon: "briefcase" },
-  { id: "writing", label: "Writing", icon: "note" },
   { id: "work", label: "Projects", icon: "folder" },
+  { id: "writing", label: "Writing", icon: "note" },
   { id: "music", label: "Music", icon: "music" },
 ];
 
@@ -63,11 +63,11 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
 
   return <div className="workspace-shell">
     <header className="workspace-mobile-header">
-      <SectionLink href={sectionHref("overview")} className="workspace-brand" onClick={() => setMenuOpen(false)}><Image src="/icon.svg" width={27} height={27} alt="" /> <span>Manas Karra</span></SectionLink>
+      <SectionLink href={sectionHref("overview")} className="workspace-brand" onClick={() => setMenuOpen(false)}><Image src="/icon.svg" width={27} height={27} alt="" /><span className="workspace-brand-copy"><span>Manas Karra</span><small>sledg3r</small></span></SectionLink>
       <button ref={menuButton} className="ws-icon-button" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="workspace-sidebar" onClick={() => setMenuOpen(!menuOpen)}><WorkspaceIcon name={menuOpen ? "close" : "menu"} /></button>
     </header>
     <aside ref={sidebar} className={`workspace-sidebar${menuOpen ? " is-open" : ""}`} id="workspace-sidebar">
-      <SectionLink href={sectionHref("overview")} className="workspace-brand desktop-brand" onClick={() => setMenuOpen(false)}><Image src="/icon.svg" width={31} height={31} alt="" /><span>Manas Karra</span></SectionLink>
+      <SectionLink href={sectionHref("overview")} className="workspace-brand desktop-brand" onClick={() => setMenuOpen(false)}><Image src="/icon.svg" width={31} height={31} alt="" /><span className="workspace-brand-copy"><span>Manas Karra</span><small>sledg3r</small></span></SectionLink>
       <nav className="workspace-navigation" aria-label="Main navigation">
         {sections.map(section => <SectionLink key={section.id} href={sectionHref(section.id)} className={`workspace-nav-item${activeSection === section.id ? " is-active" : ""}`} aria-current={activeSection === section.id ? "location" : undefined} onClick={() => setMenuOpen(false)}><WorkspaceIcon name={section.icon} /><span>{section.label}</span></SectionLink>)}
       </nav>
