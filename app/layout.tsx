@@ -52,6 +52,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="dark"
       data-scroll-behavior="smooth"
       className="h-full"
       suppressHydrationWarning
@@ -59,8 +60,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-bg text-fg antialiased">
         <ThemeProvider
           attribute="data-theme"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          forcedTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <a href="#main-content" className="skip-link">skip to content</a>

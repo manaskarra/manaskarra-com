@@ -23,7 +23,6 @@ body { margin: 0; }
 .workspace-pinned { margin-top: 33px; }
 .workspace-sidebar-bottom { margin-top: auto; padding: 24px 0 0; }
 .workspace-sidebar-bottom .sidebar-contact { margin: 0 0 12px; }
-.sidebar-location { padding: 0 12px; display: flex; justify-content: space-between; align-items: center; color: var(--fg-subtle); }
 .workspace-body { margin-left: var(--ws-sidebar-width); min-width: 0; }
 .workspace-topbar { position: sticky; top: 0; z-index: 20; height: 64px; display: flex; align-items: center; padding: 0 30px; background: var(--bg); font-size: 15px; color: var(--fg-subtle); }
 .workspace-document { max-width: 854px; padding: 58px 64px 0; margin: 0 auto; }
@@ -93,7 +92,7 @@ body { margin: 0; }
 .music-links a { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; }
 .music-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .music-links svg { width: 12px; height: 12px; color: var(--fg-subtle); }
-.listening-strip { display: grid; grid-template-columns: 17px minmax(0,1fr) 12px; align-items: center; gap: 10px; padding: 12px; margin-bottom: 10px; background: var(--ws-panel); border-radius: 9px; }
+.listening-strip { display: grid; grid-template-columns: 17px minmax(0,1fr) 12px; align-items: center; gap: 10px; padding: 12px; background: var(--ws-panel); border-radius: 9px; }
 .listening-strip > svg:first-child { color: var(--accent); width: 17px; height: 17px; }
 .listening-copy { min-width: 0; }
 .listening-label { display: block; font-size: 11px; color: var(--fg-subtle); margin-bottom: 4px; }
@@ -138,10 +137,9 @@ body { margin: 0; }
   .workspace-body { margin-left: 0; }
   .workspace-mobile-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; height: 61px; position: sticky; top: 0; background: var(--ws-sidebar); z-index: 40; }
   .workspace-brand { font-size: 15px; }
-  .mobile-controls { display: flex; gap: 6px; }
   .workspace-sidebar { display: none; position: fixed; top: 60px; left: 0; bottom: auto; max-height: calc(100dvh - 60px); width: 100%; padding: 15px 18px 22px; border-bottom: 1px solid var(--rule); box-shadow: 0 20px 30px var(--shadow); }
   .workspace-sidebar.is-open { display: block; }
-  .desktop-brand, .sidebar-location { display: none; }
+  .desktop-brand { display: none; }
   .workspace-sidebar-bottom { padding-top: 18px; }
   .workspace-navigation { margin-top: 0; }
   .workspace-nav-item { min-height: 44px; }

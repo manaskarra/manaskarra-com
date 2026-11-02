@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ListeningStrip } from "./ListeningStrip";
-import { ThemeToggle } from "./ThemeToggle";
 import { ResumeButton, ResumeProvider } from "./ResumeDialog";
 import { WorkspaceIcon, type WorkspaceIconName } from "./WorkspaceIcon";
 
@@ -65,7 +64,7 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
   return <div className="workspace-shell">
     <header className="workspace-mobile-header">
       <SectionLink href={sectionHref("overview")} className="workspace-brand" onClick={() => setMenuOpen(false)}><Image src="/icon.svg" width={27} height={27} alt="" /> <span>Manas Karra</span></SectionLink>
-      <div className="mobile-controls"><ThemeToggle /><button ref={menuButton} className="ws-icon-button" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="workspace-sidebar" onClick={() => setMenuOpen(!menuOpen)}><WorkspaceIcon name={menuOpen ? "close" : "menu"} /></button></div>
+      <button ref={menuButton} className="ws-icon-button" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} aria-expanded={menuOpen} aria-controls="workspace-sidebar" onClick={() => setMenuOpen(!menuOpen)}><WorkspaceIcon name={menuOpen ? "close" : "menu"} /></button>
     </header>
     <aside ref={sidebar} className={`workspace-sidebar${menuOpen ? " is-open" : ""}`} id="workspace-sidebar">
       <SectionLink href={sectionHref("overview")} className="workspace-brand desktop-brand" onClick={() => setMenuOpen(false)}><Image src="/icon.svg" width={31} height={31} alt="" /><span>Manas Karra</span></SectionLink>
@@ -82,7 +81,6 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
       <div className="workspace-sidebar-bottom">
         <a className="workspace-nav-item sidebar-contact" href="mailto:manas.karra@gmail.com"><WorkspaceIcon name="mail" /><span>Say hello</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
         <ListeningStrip />
-        <div className="sidebar-location"><span className="ws-mono">Dubai, UAE</span><ThemeToggle /></div>
       </div>
     </aside>
     <div className="workspace-body">
