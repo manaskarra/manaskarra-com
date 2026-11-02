@@ -31,7 +31,7 @@ export function ListeningStrip() {
     document.addEventListener("visibilitychange", refresh);
     return () => { controller.abort(); clearInterval(interval); document.removeEventListener("visibilitychange", refresh); };
   }, []);
-  return <a className="listening-strip" href={track?.url || chartUrl} target="_blank" rel="noopener noreferrer">
+  return <a className="listening-strip" href={track?.url || chartUrl} title={track ? `${track.title} — ${track.artist}` : "Last.fm weekly chart"} target="_blank" rel="noopener noreferrer">
     <WorkspaceIcon name="music" />
     <span className="listening-copy" aria-live="polite" aria-busy={loading}>
       <span className="listening-label">Top track · Last 7 days</span>

@@ -2,7 +2,7 @@
 
 Manas Karra's personal workspace: a one-page portfolio for AI engineering, projects, writing, and music as sledg3r.
 
-A desktop sidebar, compact project summaries, and an accessible résumé dialog. System typography and neutral light/dark surfaces follow the OS preference until changed. The music section links to YouTube, BeatStars, and Instagram, and shows the most-played Last.fm track from the past seven days.
+A desktop sidebar, compact project summaries, and an accessible résumé dialog. System typography, a light theme, and near-black blue-grey dark surfaces follow the OS preference until changed. The music section links to YouTube, BeatStars, and Instagram. The sidebar includes pinned LinkedIn and YouTube links and the most-played Last.fm track from the past seven days. Experience and writing come before projects.
 
 ## Run locally
 

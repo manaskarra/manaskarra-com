@@ -3,7 +3,6 @@ import { site } from "@/lib/site";
 import { getAllPosts, formatPostDate } from "@/lib/posts";
 import { ResumeButton } from "@/components/ResumeDialog";
 import { WorkspaceIcon } from "@/components/WorkspaceIcon";
-import { ListeningStrip } from "@/components/ListeningStrip";
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -31,6 +30,28 @@ export default function HomePage() {
       <div className="workspace-hero-actions">
         <ResumeButton className="ws-button ws-button-primary">Résumé <WorkspaceIcon name="note" /></ResumeButton>
         <a className="ws-text-action" href={`mailto:${site.emails.primary}`}>Email me <WorkspaceIcon name="arrow" /></a>
+        <a className="ws-text-action" href="https://www.linkedin.com/in/manas-karra/" target="_blank" rel="noopener noreferrer">LinkedIn <WorkspaceIcon name="arrow" /></a>
+        <a className="ws-text-action" href="https://x.com/manaskarra" target="_blank" rel="noopener noreferrer">X <WorkspaceIcon name="arrow" /></a>
+      </div>
+    </section>
+
+    <section id="experience" className="workspace-section" aria-labelledby="experience-title">
+      <div className="ws-section-heading"><h2 id="experience-title">Experience</h2><ResumeButton className="ws-small-link">Details in my CV <WorkspaceIcon name="arrow" /></ResumeButton></div>
+      <div className="experience-list">
+        <article className="experience-entry"><div><h3>Deriv</h3><p>AI Engineer</p></div><span className="experience-date">Feb 2025 — present</span></article>
+        <article className="experience-entry"><div><h3>Impiger Technologies</h3><p>QA Analyst &amp; Tester</p></div><span className="experience-date">Jun — Aug 2023</span></article>
+        <article className="experience-entry"><div><h3>BITS Pilani</h3><p>B.E. Computer Science</p></div><span className="experience-date">2021 — 2025</span></article>
+      </div>
+    </section>
+
+    <section id="writing" className="workspace-section" aria-labelledby="writing-title">
+      <div className="ws-section-heading"><h2 id="writing-title">Writing</h2></div>
+      <div className="workspace-notes">
+        {posts.map(post => <Link href={`/blog/${post.slug}`} key={post.slug} className="workspace-note">
+          <WorkspaceIcon name="note" />
+          <div><h3>{post.title}</h3><time dateTime={post.date}>{formatPostDate(post.date)}</time></div>
+          <WorkspaceIcon name="arrow" />
+        </Link>)}
       </div>
     </section>
 
@@ -55,26 +76,6 @@ export default function HomePage() {
       </div>
     </section>
 
-    <section id="experience" className="workspace-section" aria-labelledby="experience-title">
-      <div className="ws-section-heading"><h2 id="experience-title">Experience</h2><ResumeButton className="ws-small-link">Details in my CV <WorkspaceIcon name="arrow" /></ResumeButton></div>
-      <div className="experience-list">
-        <article className="experience-entry"><div><h3>Deriv</h3><p>AI Engineer</p></div><span className="experience-date">Feb 2025 — present</span></article>
-        <article className="experience-entry"><div><h3>Impiger Technologies</h3><p>QA Analyst &amp; Tester</p></div><span className="experience-date">Jun — Aug 2023</span></article>
-        <article className="experience-entry"><div><h3>BITS Pilani</h3><p>B.E. Computer Science</p></div><span className="experience-date">2021 — 2025</span></article>
-      </div>
-    </section>
-
-    <section id="writing" className="workspace-section" aria-labelledby="writing-title">
-      <div className="ws-section-heading"><h2 id="writing-title">Writing</h2></div>
-      <div className="workspace-notes">
-        {posts.map(post => <Link href={`/blog/${post.slug}`} key={post.slug} className="workspace-note">
-          <WorkspaceIcon name="note" />
-          <div><h3>{post.title}</h3><time dateTime={post.date}>{formatPostDate(post.date)}</time></div>
-          <WorkspaceIcon name="arrow" />
-        </Link>)}
-      </div>
-    </section>
-
     <section id="music" className="workspace-section workspace-music" aria-labelledby="music-title">
       <div className="ws-section-heading"><h2 id="music-title">Music</h2></div>
       <div className="music-profile">
@@ -89,12 +90,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <ListeningStrip />
     </section>
 
-    <section className="workspace-contact" aria-labelledby="contact-title">
-      <h2 id="contact-title">Get in touch</h2>
-      <a href={`mailto:${site.emails.primary}`}>{site.emails.primary} <WorkspaceIcon name="arrow" /></a>
-    </section>
   </>;
 }

@@ -4,15 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { ListeningStrip } from "./ListeningStrip";
 import { ThemeToggle } from "./ThemeToggle";
 import { ResumeButton, ResumeProvider } from "./ResumeDialog";
 import { WorkspaceIcon, type WorkspaceIconName } from "./WorkspaceIcon";
 
 const sections: { id: string; label: string; icon: WorkspaceIconName }[] = [
   { id: "overview", label: "Overview", icon: "home" },
-  { id: "work", label: "Projects", icon: "folder" },
   { id: "experience", label: "Experience", icon: "briefcase" },
   { id: "writing", label: "Writing", icon: "note" },
+  { id: "work", label: "Projects", icon: "folder" },
   { id: "music", label: "Music", icon: "music" },
 ];
 
@@ -75,16 +76,19 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
         <p className="ws-eyebrow">Pinned</p>
         <ResumeButton className="workspace-nav-item"><WorkspaceIcon name="note" /><span>Résumé</span></ResumeButton>
         <a className="workspace-nav-item" href="https://github.com/manaskarra" target="_blank" rel="noopener noreferrer"><WorkspaceIcon name="code" /><span>GitHub</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
+        <a className="workspace-nav-item" href="https://www.linkedin.com/in/manas-karra/" target="_blank" rel="noopener noreferrer"><WorkspaceIcon name="linkedin" /><span>LinkedIn</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
+        <a className="workspace-nav-item" href="https://www.youtube.com/@sledg3r" target="_blank" rel="noopener noreferrer"><WorkspaceIcon name="youtube" /><span>YouTube</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
         <a className="workspace-nav-item" href="mailto:manas.karra@gmail.com"><WorkspaceIcon name="mail" /><span>Say hello</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
       </div>
       <div className="workspace-sidebar-bottom">
+        <ListeningStrip />
         <div className="sidebar-location"><span className="ws-mono">Dubai, UAE</span><ThemeToggle /></div>
       </div>
     </aside>
     <div className="workspace-body">
       <div className="workspace-topbar"><span>{currentLabel}</span></div>
       <main id="main-content" className={home ? "workspace-document" : "workspace-document workspace-article"}>{children}</main>
-      <footer className="workspace-footer"><span>© {new Date().getFullYear()} Manas Karra</span><div><a href="https://www.linkedin.com/in/manas-karra/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://x.com/manaskarra" target="_blank" rel="noopener noreferrer">X ↗</a><SectionLink href={sectionHref("overview")}>Back to top ↑</SectionLink></div></footer>
+      <footer className="workspace-footer"><span>© {new Date().getFullYear()} Manas Karra</span><div><SectionLink href={sectionHref("overview")}>Back to top ↑</SectionLink></div></footer>
     </div>
   </div>;
 }
