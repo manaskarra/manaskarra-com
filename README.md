@@ -2,7 +2,7 @@
 
 Manas Karra's personal workspace: a one-page portfolio for AI engineering, projects, writing, and music as sledg3r.
 
-A desktop sidebar, compact project summaries, and an accessible résumé dialog. System typography, a light theme, and near-black blue-grey dark surfaces follow the OS preference until changed. The music section links to YouTube, BeatStars, and Instagram. The sidebar includes pinned LinkedIn and YouTube links and the most-played Last.fm track from the past seven days. Experience and writing come before projects.
+A desktop sidebar, compact project summaries, and an accessible résumé dialog. System typography and near-black blue-grey surfaces keep the workspace in dark mode. The music section links to YouTube, BeatStars, and Instagram. The sidebar includes pinned LinkedIn and YouTube links, with Say hello above the most-played Last.fm track from the past seven days. Experience and writing come before projects.
 
 The intro includes a transparent dithered portrait derived from the supplied looking-down photo, with a small chin lift. It uses a theme-coloured SVG mask with a single hover/focus sweep, tap-to-toggle on touch screens, and reduced-motion support. The original photos are not included in the repository.
 
@@ -38,4 +38,4 @@ npm run build
 - `/about`, `/projects`, and `/blog` redirect to homepage sections.
 - `/resume` remains a standalone PDF landing page.
 
-Stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, MDX, next-themes. Existing Vercel hosting remains the deployment target. Local preview work does not deploy the site.
+Stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, MDX, next-themes. Vercel deploys the `main` branch to manaskarra.com. Local preview work does not deploy the site.
