@@ -64,6 +64,7 @@ export default async function BlogPostPage({
 
   const marker = `${formatPostDate(post.date)}`;
   const label = post.readingTime;
+  const showLabels = post.slug !== "magenta-wsp";
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -105,14 +106,14 @@ export default async function BlogPostPage({
       </nav>
 
       <header className="mb-12 max-w-[920px]">
-        <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">field note</p>
-        <h1 className="mt-5 font-serif text-[clamp(3rem,8vw,5.5rem)] leading-[0.98] tracking-[-0.04em] text-fg">
+        {showLabels && <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">field note</p>}
+        <h1 className={`${showLabels ? "mt-5 " : ""}font-serif text-[clamp(3rem,8vw,5.5rem)] leading-[0.98] tracking-[-0.04em] text-fg`}>
           {post.title}
         </h1>
         <p className="mt-7 max-w-[60ch] text-[18px] leading-[1.7] text-fg-subtle sm:text-[20px]">
           {post.excerpt}
         </p>
-        {post.tags.length > 0 && (
+        {showLabels && post.tags.length > 0 && (
           <div className="mt-6 flex flex-wrap gap-3 font-mono text-[10px] text-fg-subtle">
             {post.tags.map((t) => (
               <span key={t}>#{t}</span>
