@@ -85,13 +85,6 @@ export default function HomePage() {
             <p>Finds GitHub projects with potential to become a business.</p>
           </div>
         </article>
-        <article className="project-row">
-          <WorkspaceIcon name="folder" />
-          <div>
-            <a className="project-title" href="https://github.com/manaskarra/RagaXonic-DL" target="_blank" rel="noopener noreferrer">RagaXonic <WorkspaceIcon name="arrow" /></a>
-            <p>Generating music with Hindustani ragas and Western harmony.</p>
-          </div>
-        </article>
       </div>
     </section>
 
