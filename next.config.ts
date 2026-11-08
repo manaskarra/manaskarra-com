@@ -26,6 +26,11 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
+  async rewrites() {
+    return [
+      { source: "/projects/magenta-wsp", destination: "/demos/magenta-wsp/index.html" },
+    ];
+  },
   async headers() {
     return [
       {

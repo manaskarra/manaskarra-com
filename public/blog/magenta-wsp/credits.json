@@ -1,0 +1,26 @@
+{
+  "image": {
+    "file": "piano-flute.jpg",
+    "description": "Generated editorial illustration; not an architecture figure or experimental data.",
+    "tool": "Built-in image_gen",
+    "prompt": "Use case: illustration-story.\nAsset type: wide editorial illustration for a personal engineering blog about editing a music model's weights to make a piano request produce flute.\nPrimary request: a carefully composed, tactile illustration connecting a piano keyboard, a small matrix of blue and rose squares, and a silver concert flute. This is conceptual cover art, not a technical diagram.\nScene: pale cool paper background, almost white #f4f5fb. A cropped close-up piano keyboard enters from the lower left. Fine graphite construction lines and a few delicately printed square matrices occupy the center. A realistically recognizable silver transverse concert flute, complete with keys and lip plate, extends across the upper right. Small blue and rose cells appear to bridge the two instruments. A visual thought about changing a few numbers to change sound.\nStyle: sophisticated mixed-media editorial collage, precise graphite drawing with restrained gouache and subtle paper grain. Intelligent, spare, slightly playful; closer to a musician's working notebook than sci-fi AI imagery. Detailed physical instruments, generous breathing room.\nComposition: wide landscape 3:2. Large enough instruments to read at a 700-pixel blog width. No text anywhere. No people, no robot brains, no neon, no gradients, no watermarks, no logos, no floating musical-note clipart. Limit accent color to ink blue #4b45dc and a small amount of dusty rose; black and silver instrument details. High quality publication illustration."
+  },
+  "audio": {
+    "source": "https://github.com/manaskarra/magenta-wsp/tree/6bcd563d4c6015f9ba93cb35eb7213c023e93b2a/audio",
+    "records": "https://github.com/manaskarra/magenta-wsp/blob/6bcd563d4c6015f9ba93cb35eb7213c023e93b2a/evidence/demo_audio.json",
+    "case": "fp_boogie",
+    "files": {
+      "/demos/magenta-wsp/audio/original_fp_boogie.wav": "original_fp_boogie.wav",
+      "/demos/magenta-wsp/audio/main_fp_boogie.wav": "main_fp_boogie.wav",
+      "/demos/magenta-wsp/audio/prompt_fp_boogie.wav": "prompt_fp_boogie.wav"
+    },
+    "note": "Byte-identical copies of the level-matched generated outputs. These clips use text conditioning, not an external reference recording."
+  },
+  "model": {
+    "name": "Google Magenta RealTime 2",
+    "url": "https://huggingface.co/google/magenta-realtime-2",
+    "attribution": "Google DeepMind / Google LLC",
+    "model_license": "CC BY 4.0",
+    "terms": "https://github.com/manaskarra/magenta-wsp/blob/main/docs/ATTRIBUTION.md"
+  }
+}

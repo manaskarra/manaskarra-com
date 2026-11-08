@@ -1,0 +1,84 @@
+---
+title: Piano to flute, one weight edit
+date: 2026-11-08
+excerpt: I tried weight-space programming on Magenta RealTime 2. The same piano request produced flute after changing one matrix, without backpropagation.
+tags: [music, weight-space-programming, model-editing]
+---
+
+<a className="magenta-demo-link" href="/projects/magenta-wsp"><strong>Try the interactive demo</strong><span>Hear the before and after. Explore the actual weights.</span></a>
+
+I’ve always been curious about music models, partly because they bring together my interest in music and my full-time work in AI. With [RagaXonic](https://github.com/manaskarra/RagaXonic-DL), I worked on a three-layer LSTM for polyphonic MIDI, exploring Hindustani and Western musical ideas.
+
+Then I read [Sparks of Weight-Space Programming](https://rikiyat.github.io/blog/weight-space-programming/). An LLM reasons about a network and writes changes into its weights, without gradient descent. The experiments include using Python and feedback from running the model. I wondered what that would look like with music.
+
+The goal I settled on: **keep asking for piano, but make the saved model produce flute.**
+
+<figure>
+  <img src="/blog/magenta-wsp/piano-flute.jpg" alt="An editorial illustration of piano keys and a silver flute connected by small grids of blue and rose squares." width="1536" height="1024" />
+  <figcaption>Generated illustration. The diagram below shows the actual edit.</figcaption>
+</figure>
+
+## Same request, different instrument
+
+Here’s a selected example from [Google’s Magenta RealTime 2](https://huggingface.co/google/magenta-realtime-2). Both versions received this exact prompt:
+
+> A solo honky-tonk piano plays a fast boogie-woogie, only piano.
+
+<div className="magenta-listening" role="group" aria-label="Compare generated audio">
+  <div><strong id="magenta-original">Original weights: piano</strong><audio controls preload="metadata" aria-labelledby="magenta-original" src="/demos/magenta-wsp/audio/original_fp_boogie.wav" /></div>
+  <div><strong id="magenta-edited">Edited weights: flute</strong><audio controls preload="metadata" aria-labelledby="magenta-edited" src="/demos/magenta-wsp/audio/main_fp_boogie.wav" /></div>
+</div>
+
+Same seed and generation settings, with playback levels matched. These are recorded outputs, not live browser generation. At one point during development, my feedback was simply “it’s a flute.” Earlier pairs had both sounded like piano, or sounded worse without making a convincing switch.
+
+GPT-6 Astra designed and implemented the main edit using Python and encoded examples. I set the goal, listened to the comparisons and steered the experiments: a human-guided WSP workflow.
+
+## Where the change lives
+
+Magenta encodes a prompt or reference recording as numbers describing its style. An adapter maps those numbers into a signal the generator can use. That’s the target.
+
+<figure className="magenta-architecture" aria-label="The style-conditioning path through Magenta">
+  <ol className="magenta-flow">
+    <li><strong>Text or reference audio</strong><span>The same input before and after</span></li>
+    <li><strong>Frozen style encoder</strong><span>Style tokens → codebook lookup → 768-number vector</span></li>
+    <li className="magenta-edited-stage"><strong>Style adapter · W → W′</strong><span>768 × 1,024 weights. This is the only tensor replaced.</span></li>
+    <li><strong>Music generator + audio decoder</strong><span>Newly generated music</span></li>
+  </ol>
+  <figcaption>The style-conditioning path, simplified. Reference audio guides new music; this does not replace an instrument in a recording note for note.</figcaption>
+</figure>
+
+Piano and flute examples give a direction, **d**, that shifts the conditioning toward flute. A second vector, **g**, controls how strongly it applies. Piano examples should activate it; other instruments should mostly leave it alone.
+
+The gate uses 432 text encodings and nine synthetic audio references. Python solves the constraints directly, without backpropagation or optimizer steps, then writes a rank-one update:
+
+<div className="magenta-equation" role="math" aria-label="W prime equals W plus alpha times g d transpose">
+  <i>W</i>′ = <i>W</i> + α <i>g d</i><sup>⊤</sup>
+</div>
+
+The strength, α = 1.4, was chosen through listening comparisons. Ordinary inference uses the replacement matrix; its multiplication includes the control signal, without an extra instruction or activation hook.
+
+That changes **786,432 values, or 0.032% of the full checkpoint**. Magenta already knows how to generate flute. The edit redirects when it uses that ability. The [method](https://github.com/manaskarra/magenta-wsp/blob/main/METHOD.md) explains the calculation; [Unified Concept Editing](https://unified.baulab.info/) is related prior work on closed-form edits.
+
+## What I checked
+
+I checked the saved model as well as the sound. The [verification records](https://github.com/manaskarra/magenta-wsp/tree/main/evidence) show:
+
+| Check | Result |
+| --- | --- |
+| Compare checkpoints | One matrix changed; the other 617 tensors are identical. |
+| Recalculate from saved encoder tokens | The patch hash matches exactly. |
+| Reload in a fresh process | One development clip reproduced byte for byte on the tested runtime. |
+
+I heard the switch on solo prompts, a real piano reference and a jazz trio where bass and drums were still audible. Piano-and-guitar could stay piano-and-guitar. A piano-and-strings reference was stranger: a negative gate response made the edit run backwards and add piano.
+
+There’s an obvious baseline: just ask the original model for flute.
+
+> A solo flute plays a fast boogie-woogie, only flute.
+
+<div className="magenta-listening" role="group" aria-label="Flute-prompt baseline">
+  <div><strong id="magenta-prompt">Original weights, flute prompt</strong><audio controls preload="metadata" aria-labelledby="magenta-prompt" src="/demos/magenta-wsp/audio/prompt_fp_boogie.wav" /></div>
+</div>
+
+Two blind quality comparisons split one preference each. I was the only listener, so this doesn’t establish a quality advantage over prompting. What I can show is an audible behavior change stored in the weights, and the inputs where it fails.
+
+I want to try making the edit more selective when several instruments play together. [Explore the interactive demo](/projects/magenta-wsp), or get the [patch, code, calibration tokens and evaluation notes](https://github.com/manaskarra/magenta-wsp) to reproduce it.

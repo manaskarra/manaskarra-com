@@ -63,6 +63,14 @@ export default function HomePage() {
       <div className="ws-section-heading"><h2 id="work-title">Projects</h2></div>
       <div className="workspace-projects">
         <article className="project-row">
+          <WorkspaceIcon name="music" />
+          <div>
+            <a className="project-title" href="/projects/magenta-wsp">magenta-wsp <WorkspaceIcon name="arrow" /></a>
+            <p>Piano to flute through one permanent weight edit. Listen and explore the changed weights.</p>
+            <Link className="project-note-link" href="/blog/magenta-wsp">Read the write-up</Link>
+          </div>
+        </article>
+        <article className="project-row">
           <WorkspaceIcon name="folder" />
           <div>
             <a className="project-title" href="https://github.com/manaskarra/verd" target="_blank" rel="noopener noreferrer">verd <WorkspaceIcon name="arrow" /></a>

@@ -386,6 +386,98 @@ hr {
   color: var(--fg-subtle);
 }
 
+.magenta-listening {
+  display: grid;
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.prose-post .magenta-demo-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 2rem;
+  padding: 1.1rem 1.25rem;
+  color: var(--fg);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.magenta-demo-link strong {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.magenta-demo-link span {
+  font-size: 0.875rem;
+  color: var(--fg-subtle);
+}
+
+.magenta-demo-link:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.magenta-listening strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.magenta-listening audio {
+  display: block;
+  width: 100%;
+}
+
+.prose-post .magenta-flow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.magenta-flow li {
+  position: relative;
+  margin: 0 0 1.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
+.magenta-flow li:not(:last-child)::after {
+  content: "↓";
+  position: absolute;
+  left: calc(50% - 0.35em);
+  bottom: -1.65rem;
+  color: var(--fg-subtle);
+}
+
+.magenta-flow strong, .magenta-flow span {
+  display: block;
+}
+
+.magenta-flow span {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--fg-subtle);
+}
+
+.magenta-flow .magenta-edited-stage {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.magenta-equation {
+  margin: 1.5rem 0;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.75rem;
+  letter-spacing: 0.04em;
+}
+
 /* tables inside MDX — wrap in a horizontally scrollable container so wide
    tables don't break the layout on small screens */
 .prose-post table {

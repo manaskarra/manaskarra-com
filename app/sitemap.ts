@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${base}/`, priority: 1 },
     { url: `${base}/resume`, priority: 0.6 },
+    { url: `${base}/projects/magenta-wsp`, priority: 0.8 },
   ];
 
   const postRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({

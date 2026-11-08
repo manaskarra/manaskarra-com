@@ -23,6 +23,7 @@ For this local redesign preview only, `LASTFM_PUBLIC_PREVIEW=true` can read the 
 
 ```bash
 npx tsc --noEmit --incremental false
+node --test scripts/check-magenta-demo.test.mjs
 npm run build
 ```
 
@@ -38,5 +39,18 @@ npm run build
 - `content/posts/`: existing MDX articles and their URLs.
 - `/about` opens the homepage About me dialog; `/projects` and `/blog` redirect to homepage sections.
 - `/resume` remains a standalone PDF landing page.
+- `/blog/magenta-wsp` is the piano-to-flute article; `/projects/magenta-wsp` serves the standalone interactive demo.
+
+The demo snapshot lives in `public/demos/magenta-wsp/`. Update it from a clean,
+committed [magenta-wsp](https://github.com/manaskarra/magenta-wsp) checkout:
+
+```bash
+node scripts/sync-magenta-demo.mjs /path/to/magenta-wsp
+node --test scripts/check-magenta-demo.test.mjs
+```
+
+The importer checks the release hashes, adapts HTML asset paths, and records the
+source commit. Make demo changes in the source repository, then import them here.
+Writing sorts posts by date; the Magenta post precedes verd.
 
 Stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, MDX, next-themes. Vercel deploys the `main` branch to manaskarra.com. Local preview work does not deploy the site.
