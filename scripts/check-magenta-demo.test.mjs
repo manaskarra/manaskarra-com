@@ -39,4 +39,6 @@ test("friendly demo route resolves assets and embedded document links", () => {
   }
   assert.match(page, /href="https:\/\/manaskarra.com\/blog\/magenta-wsp"/);
   assert.match(page, /name="twitter:card" content="summary_large_image"/);
+  assert.match(page, /rel="icon" type="image\/svg\+xml" href="\/demos\/magenta-wsp\/icon.svg"/);
+  assert.deepEqual(fs.readFileSync(path.join(root, "icon.svg")), fs.readFileSync(new URL("../app/icon.svg", import.meta.url)));
 });
