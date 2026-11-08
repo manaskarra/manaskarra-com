@@ -29,6 +29,7 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       { source: "/projects/magenta-wsp", destination: "/demos/magenta-wsp/index.html" },
+      { source: "/projects/magenta-wsp/explained", destination: "/explainers/magenta-wsp/index.html" },
     ];
   },
   async headers() {

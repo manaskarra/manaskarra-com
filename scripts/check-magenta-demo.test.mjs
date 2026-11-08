@@ -27,7 +27,7 @@ test("friendly demo route resolves assets and embedded document links", () => {
       if (url.pathname.startsWith("/demos/magenta-wsp/")) {
         assert.ok(fs.existsSync(path.join(root, decodeURIComponent(url.pathname.slice("/demos/magenta-wsp/".length)))), target);
       } else {
-        assert.ok(["/blog/magenta-wsp", "/blog/magenta-wsp/piano-flute.jpg", "/projects/magenta-wsp"].includes(url.pathname), target);
+        assert.ok(["/blog/magenta-wsp", "/blog/magenta-wsp/piano-flute.jpg", "/projects/magenta-wsp", "/projects/magenta-wsp/explained"].includes(url.pathname), target);
       }
       const doc = new URLSearchParams(url.hash.slice(1)).get("doc");
       if (doc) assert.ok(Object.hasOwn(documents, doc), target);
