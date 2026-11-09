@@ -10,7 +10,7 @@ export default function OpenGraphImage() {
     <div style={{ width: "100%", height: "100%", display: "flex", background: "#11141c", color: "#e9ecf2", fontFamily: "sans-serif" }}>
       <div style={{ width: 238, height: "100%", padding: "43px 24px", display: "flex", flexDirection: "column", background: "#181d27", fontSize: 18 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 47 }}><span style={{ color: "#8b88ff" }}>mk</span><span>Manas Karra</span></div>
-        {["Overview", "Work", "Writing", "Music"].map((label, i) => <div key={label} style={{ padding: "13px 12px", borderRadius: 8, marginBottom: 5, background: i === 0 ? "#2b3445" : "transparent", color: i === 0 ? "#e9ecf2" : "#a1a8b7" }}>{label}</div>)}
+        {["Overview", "Work", "Music"].map((label, i) => <div key={label} style={{ padding: "13px 12px", borderRadius: 8, marginBottom: 5, background: i === 0 ? "#2b3445" : "transparent", color: i === 0 ? "#e9ecf2" : "#a1a8b7" }}>{label}</div>)}
       </div>
       <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "48px 66px" }}>
         <div style={{ color: "#a1a8b7", fontSize: 16 }}>Overview</div>

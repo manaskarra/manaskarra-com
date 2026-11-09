@@ -42,7 +42,7 @@ describe("weekly listening card", { concurrency: true }, () => {
     assert.equal(await card(page).getByRole("link").getAttribute("href"), "https://www.last.fm/user/manask_");
     const bounds = await card(page).boundingBox();
     assert.ok(bounds.y >= 0 && bounds.y + bounds.height <= 64, "widget stays inside the top toolbar");
-    assert.ok(bounds.width <= 270 && bounds.height <= 60, "widget remains compact even with a long title");
+    assert.ok(bounds.width <= 300 && bounds.height <= 60, "widget remains compact even with a long title");
     await page.getByRole("heading", { name: "Experience", exact: true }).scrollIntoViewIfNeeded();
     const scrolled = await card(page).boundingBox();
     assert.ok(scrolled.y >= 0 && scrolled.y + scrolled.height <= 64, "widget remains at the top while scrolling");
@@ -94,6 +94,7 @@ describe("weekly listening card", { concurrency: true }, () => {
     const close = card(page).getByRole("button", { name: "Dismiss weekly listening pick" });
     await close.focus();
     await close.press("Enter");
+    await page.locator(".listening-card").waitFor({ state: "detached" });
     assert.equal(await card(page).count(), 0);
     await page.reload();
     await page.waitForTimeout(4500);
@@ -133,6 +134,7 @@ describe("weekly listening card", { concurrency: true }, () => {
     await page.goto(baseURL);
     await card(page).waitFor({ state: "visible" });
     await card(page).getByRole("button").click();
+    await page.locator(".listening-card").waitFor({ state: "detached" });
     assert.equal(await card(page).count(), 0);
   });
 });

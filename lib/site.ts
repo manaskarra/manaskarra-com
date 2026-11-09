@@ -11,8 +11,7 @@ export const site = {
   lastfmUser: "manask_",
   nav: [
     { href: "/about", label: "about" },
-    { href: "/projects", label: "projects" },
-    { href: "/blog", label: "writing" },
+    { href: "/#work", label: "work" },
   ],
   social: [
     { label: "resume", href: "/resume" },

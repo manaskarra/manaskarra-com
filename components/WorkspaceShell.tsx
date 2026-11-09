@@ -9,11 +9,10 @@ import { PersonalDialog } from "./PersonalDialog";
 import { ResumeButton, ResumeProvider } from "./ResumeDialog";
 import { WorkspaceIcon, type WorkspaceIconName } from "./WorkspaceIcon";
 
-const sections = ["overview", "experience", "work", "writing", "music"];
+const sections = ["overview", "experience", "work", "music"];
 const navigation: { id: string; anchor: string; label: string; icon: WorkspaceIconName }[] = [
   { id: "overview", anchor: "overview", label: "Overview", icon: "home" },
   { id: "work", anchor: "experience", label: "Work", icon: "briefcase" },
-  { id: "writing", anchor: "writing", label: "Writing", icon: "note" },
   { id: "music", anchor: "music", label: "Music", icon: "music" },
 ];
 
@@ -26,8 +25,8 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
   const home = pathname === "/";
   const SectionLink = home ? "a" : Link;
   const sectionHref = (id: string) => `${home ? "" : "/"}#${id}`;
-  const activeSection = home ? (active === "experience" ? "work" : active) : pathname.startsWith("/blog") ? "writing" : "";
-  const currentLabel = home ? navigation.find(section => section.id === activeSection)?.label ?? "Overview" : pathname.startsWith("/blog/") ? "Writing / Article" : pathname === "/resume" ? "Résumé" : "Workspace";
+  const activeSection = home ? (active === "experience" ? "work" : active) : pathname.startsWith("/blog") || pathname.startsWith("/projects") ? "work" : "";
+  const currentLabel = home ? navigation.find(section => section.id === activeSection)?.label ?? "Overview" : pathname.startsWith("/blog/") ? "Work / Article" : pathname.startsWith("/projects/") ? "Work / Project" : pathname === "/resume" ? "Résumé" : "Workspace";
 
   useEffect(() => {
     if (!home) return;
@@ -39,7 +38,13 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
         const element = document.getElementById(section);
         if (element && element.getBoundingClientRect().top <= 180) current = section;
       }
-      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = sections[sections.length - 1];
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
+        // Short pages can reach the bottom while the linked section is still in view.
+        const linkedSection = window.location.hash.slice(1);
+        const linkedBounds = document.getElementById(linkedSection)?.getBoundingClientRect();
+        current = sections.includes(linkedSection) && linkedBounds && linkedBounds.bottom > 180 && linkedBounds.top < window.innerHeight
+          ? linkedSection : sections[sections.length - 1];
+      }
       setActive(current);
     };
     const scroll = () => { if (!scheduled) { scheduled = true; requestAnimationFrame(update); } };

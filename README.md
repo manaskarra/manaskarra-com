@@ -2,9 +2,9 @@
 
 Manas Karra's personal workspace: a one-page portfolio for AI engineering, projects, writing, and music as sledg3r.
 
-A desktop sidebar, compact project summaries, and accessible résumé and About me dialogs. System typography and near-black blue-grey surfaces keep the workspace in dark mode. Navigation has four links: Overview, Work, Writing, and Music. Work covers Experience and Projects, with magenta-wsp, verd and gitbiz. The violet sledg3r link in the bio leads to Music, with YouTube, BeatStars, and Instagram links. The sidebar includes pinned LinkedIn and YouTube links. Clicking the name or person icon opens About me, which includes Say hello and a personal Spotify profile.
+A desktop sidebar, compact project summaries, and accessible résumé and About me dialogs. System typography and near-black blue-grey surfaces keep the workspace in dark mode. Navigation has three links: Overview, Work, and Music. Work covers Experience and projects, with magenta-wsp, verd and gitbiz; write-ups are linked directly from their projects. The violet sledg3r link in the bio leads to Music, with YouTube, BeatStars, and Instagram links. The sidebar includes pinned LinkedIn and YouTube links. Clicking the name or person icon opens About me, which includes Say hello and a personal Spotify profile.
 
-A compact Last.fm record widget in the top-right toolbar shows the most-played track from the last seven days in two quiet lines, with the title and artist together. It appears after four seconds, once the track is ready, and stays hidden during loading or errors. The toolbar reserves its space on mobile so it never covers the navigation or page content. Close it with the × button or press Escape while the widget is focused; dismissal lasts for the current browser tab.
+A floating Last.fm bubble in the top-right toolbar shows the most-played track from the last seven days in two quiet lines, with the title and artist together. A soft violet border and shadow frame the vinyl icon. It appears after four seconds, once the track is ready, and stays hidden during loading or errors. The toolbar reserves its space on mobile so it never covers the navigation or page content. Close it with the × button or press Escape while the widget is focused; it pops away and stays dismissed for the current browser tab. Reduced-motion settings skip the animations.
 
 The lower sidebar has an “A little more about me” link to the full personal dialog. It stays at the bottom on desktop and follows the pinned links inside mobile navigation.
 
@@ -49,7 +49,7 @@ The listening-card checks use Playwright Chromium (`npx playwright install chrom
 - `public/resume.pdf`: updated 2026 résumé.
 - `app/api/top-track/route.ts`: weekly Last.fm track; the older `/api/now-playing` route remains available.
 - `content/posts/`: existing MDX articles and their URLs.
-- `/about` opens the homepage About me dialog; `/projects` and `/blog` redirect to homepage sections.
+- `/about` opens the homepage About me dialog; `/projects` and `/blog` redirect to Work.
 - `/resume` remains a standalone PDF landing page.
 - `/blog/magenta-wsp` is the piano-to-flute article; `/projects/magenta-wsp` serves the standalone interactive demo.
 
@@ -63,7 +63,7 @@ node --test scripts/check-magenta-demo.test.mjs
 
 The importer checks the release hashes, adapts HTML asset paths, and records the
 source commit. Make demo changes in the source repository, then import them here.
-Writing sorts posts by date; the Magenta post precedes verd.
+Existing article URLs are preserved, with return links to Work.
 
 Stack: Next.js 16, React 19, TypeScript, Tailwind CSS v4, MDX, next-themes. Vercel deploys the `main` branch to manaskarra.com. Local preview work does not deploy the site.
 

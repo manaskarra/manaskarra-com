@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { HologramPortrait } from "@/components/HologramPortrait";
 import { site } from "@/lib/site";
-import { getAllPosts, formatPostDate } from "@/lib/posts";
 import { ResumeButton } from "@/components/ResumeDialog";
 import { WorkspaceIcon } from "@/components/WorkspaceIcon";
 
@@ -19,7 +18,6 @@ const personJsonLd = {
 };
 
 export default function HomePage() {
-  const posts = getAllPosts();
   return <>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }} />
 
@@ -60,7 +58,7 @@ export default function HomePage() {
     </section>
 
     <section id="work" className="workspace-section" aria-labelledby="work-title">
-      <div className="ws-section-heading"><h2 id="work-title">Projects</h2></div>
+      <div className="ws-section-heading"><h2 id="work-title">Work</h2></div>
       <div className="workspace-projects">
         <article className="project-row">
           <WorkspaceIcon name="music" />
@@ -85,17 +83,6 @@ export default function HomePage() {
             <p>Finds GitHub projects with potential to become a business.</p>
           </div>
         </article>
-      </div>
-    </section>
-
-    <section id="writing" className="workspace-section" aria-labelledby="writing-title">
-      <div className="ws-section-heading"><h2 id="writing-title">Writing</h2></div>
-      <div className="workspace-notes">
-        {posts.map(post => <Link href={`/blog/${post.slug}`} key={post.slug} className="workspace-note">
-          <WorkspaceIcon name="note" />
-          <div><h3>{post.title}</h3><time dateTime={post.date}>{formatPostDate(post.date)}</time></div>
-          <WorkspaceIcon name="arrow" />
-        </Link>)}
       </div>
     </section>
 

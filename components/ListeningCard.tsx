@@ -12,6 +12,7 @@ export function ListeningCard() {
   const [track, setTrack] = useState<Track | null>(null);
   const [ready, setReady] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     if (dismissed) return;
@@ -51,14 +52,23 @@ export function ListeningCard() {
     };
   }, [dismissed]);
 
+  useEffect(() => {
+    if (!closing) return;
+    // Finish dismissal even if the animation is interrupted or disabled.
+    const timer = window.setTimeout(() => setDismissed(true), 280);
+    return () => window.clearTimeout(timer);
+  }, [closing]);
+
   function dismiss() {
-    setDismissed(true);
+    if (closing) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setDismissed(true);
+    else setClosing(true);
     try { sessionStorage.setItem(dismissalKey, "true"); } catch { /* Dismissal still lasts until this page is reloaded. */ }
   }
 
   if (!ready || !track || dismissed) return null;
 
-  return <aside className="listening-card" aria-label="Weekly listening pick" onKeyDown={event => { if (event.key === "Escape") dismiss(); }}>
+  return <aside className={`listening-card${closing ? " is-closing" : ""}`} aria-label="Weekly listening pick" inert={closing} onKeyDown={event => { if (event.key === "Escape") dismiss(); }}>
     <a className="listening-link" href={profileUrl} title={`${track.title} — ${track.artist}. View my Last.fm profile`} target="_blank" rel="noopener noreferrer">
       <span className="listening-record" aria-hidden="true"><span /></span>
       <span className="listening-copy">

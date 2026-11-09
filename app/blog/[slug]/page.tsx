@@ -98,10 +98,10 @@ export default async function BlogPostPage({
       />
       <nav className="mb-10 font-mono text-[11px]">
         <Link
-          href="/blog"
+          href="/#work"
           className="text-link text-fg-subtle"
         >
-          ← all writing
+          ← back to work
         </Link>
       </nav>
 
@@ -129,7 +129,7 @@ export default async function BlogPostPage({
       <footer className="mt-16 flex flex-col justify-between gap-5 border-t border-rule pt-8 sm:flex-row sm:items-center">
         <p className="font-serif text-[24px] text-fg">Keep following the thread.</p>
         <div className="flex flex-wrap gap-5 font-mono text-[11px]">
-          <Link href="/blog" className="text-link text-fg-subtle">more writing →</Link>
+          <Link href="/#work" className="text-link text-fg-subtle">more work →</Link>
           <a href={`mailto:${site.emails.primary}`} className="text-link text-accent">send a thought ↗</a>
         </div>
       </footer>
