@@ -62,9 +62,12 @@ export function ListeningCard() {
     <a className="listening-link" href={profileUrl} title={`${track.title} — ${track.artist}. View my Last.fm profile`} target="_blank" rel="noopener noreferrer">
       <span className="listening-record" aria-hidden="true"><span /></span>
       <span className="listening-copy">
-        <span className="listening-label">On repeat <span>this week</span></span>
-        <span className="listening-track">{track.title}</span>
-        <span className="listening-artist">{track.artist}</span>
+        <span className="listening-label">On repeat this week</span>
+        <span className="listening-title-row">
+          <span className="listening-track">{track.title}</span>
+          <span className="listening-separator" aria-hidden="true">·</span>
+          <span className="listening-artist">{track.artist}</span>
+        </span>
       </span>
     </a>
     <button className="ws-icon-button listening-close" type="button" aria-label="Dismiss weekly listening pick" onClick={dismiss}><WorkspaceIcon name="close" /></button>

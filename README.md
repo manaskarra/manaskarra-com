@@ -4,7 +4,9 @@ Manas Karra's personal workspace: a one-page portfolio for AI engineering, proje
 
 A desktop sidebar, compact project summaries, and accessible résumé and About me dialogs. System typography and near-black blue-grey surfaces keep the workspace in dark mode. Navigation has four links: Overview, Work, Writing, and Music. Work covers Experience and Projects, with magenta-wsp, verd and gitbiz. The violet sledg3r link in the bio leads to Music, with YouTube, BeatStars, and Instagram links. The sidebar includes pinned LinkedIn and YouTube links. Clicking the name or person icon opens About me, which includes Say hello and a personal Spotify profile.
 
-A compact Last.fm record widget in the top-right toolbar shows the most-played track from the last seven days. It appears after four seconds, once the track is ready, and stays hidden during loading or errors. The toolbar reserves its space on mobile so it never covers the navigation or page content. Close it with the × button or press Escape while the widget is focused; dismissal lasts for the current browser tab.
+A compact Last.fm record widget in the top-right toolbar shows the most-played track from the last seven days in two quiet lines, with the title and artist together. It appears after four seconds, once the track is ready, and stays hidden during loading or errors. The toolbar reserves its space on mobile so it never covers the navigation or page content. Close it with the × button or press Escape while the widget is focused; dismissal lasts for the current browser tab.
+
+The lower sidebar has a short “Beyond the screen” introduction and an About me link to the full personal dialog. It stays at the bottom on desktop and follows the pinned links inside mobile navigation.
 
 The intro includes a transparent dithered portrait derived from the supplied looking-down photo, with a small chin lift. It uses a theme-coloured SVG mask with a single hover/focus sweep, tap-to-toggle on touch screens, and reduced-motion support. The original photos are not included in the repository.
 
