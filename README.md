@@ -2,7 +2,9 @@
 
 Manas Karra's personal workspace: a one-page portfolio for AI engineering, projects, writing, and music as sledg3r.
 
-A desktop sidebar, compact project summaries, and accessible résumé and About me dialogs. System typography and near-black blue-grey surfaces keep the workspace in dark mode. Navigation has four links: Overview, Work, Writing, and Music. Work covers Experience and Projects, with magenta-wsp, verd and gitbiz. The violet sledg3r link in the bio leads to Music, with YouTube, BeatStars, and Instagram links. The sidebar includes pinned LinkedIn and YouTube links, with a compact Last.fm weekly top track at the bottom. Clicking the name or person icon opens About me, which includes Say hello and a personal Spotify profile.
+A desktop sidebar, compact project summaries, and accessible résumé and About me dialogs. System typography and near-black blue-grey surfaces keep the workspace in dark mode. Navigation has four links: Overview, Work, Writing, and Music. Work covers Experience and Projects, with magenta-wsp, verd and gitbiz. The violet sledg3r link in the bio leads to Music, with YouTube, BeatStars, and Instagram links. The sidebar includes pinned LinkedIn and YouTube links. Clicking the name or person icon opens About me, which includes Say hello and a personal Spotify profile.
+
+A floating Last.fm card shows the most-played track from the last seven days. It appears after four seconds, once the track is ready, and stays hidden during loading or errors. Close it with the × button or press Escape while the card is focused; dismissal lasts for the current browser tab.
 
 The intro includes a transparent dithered portrait derived from the supplied looking-down photo, with a small chin lift. It uses a theme-coloured SVG mask with a single hover/focus sweep, tap-to-toggle on touch screens, and reduced-motion support. The original photos are not included in the repository.
 
@@ -15,7 +17,7 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. No environment variables are required for the portfolio. Set `LASTFM_API_KEY` in `.env.local` to enable the weekly chart. `/api/top-track` calls `user.getTopTracks` with `period=7day` and `limit=1`, cached for 30 minutes. Missing data or API failures leave a link to the weekly Last.fm chart.
+Open http://localhost:3000. No environment variables are required for the portfolio. Set `LASTFM_API_KEY` in `.env.local` to enable the weekly chart. `/api/top-track` calls `user.getTopTracks` with `period=7day` and `limit=1`, cached for 30 minutes. Missing data or API failures keep the listening card hidden.
 
 For this local redesign preview only, `LASTFM_PUBLIC_PREVIEW=true` can read the existing site's public weekly chart when no API key is set. Leave that option unset on deployment; the deployed site uses its existing Last.fm key. Credentials never go to the browser.
 
@@ -26,6 +28,14 @@ npx tsc --noEmit --incremental false
 node --test scripts/check-magenta-demo.test.mjs
 npm run build
 ```
+
+With the site running locally, run the content checks and browser regression tests:
+
+```bash
+TEST_BASE_URL=http://localhost:3000 node --test scripts/*.test.mjs
+```
+
+The listening-card checks use Playwright Chromium (`npx playwright install chromium` if it is not already installed). They cover delayed loading, slow and failed responses, dismissal, blocked storage, mobile sizing, and reduced motion.
 
 ## Content and routes
 

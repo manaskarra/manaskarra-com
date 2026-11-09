@@ -32,7 +32,7 @@ export async function GET() {
         const data = await response.json();
         track = parseTrack(data?.week?.track);
       }
-    } catch { /* The client falls back to the public Last.fm weekly chart. */ }
+    } catch { /* The listening card stays hidden when the chart is unavailable. */ }
   }
 
   return NextResponse.json({ available: !!track, period: "7day", track }, {

@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { site } from "@/lib/site";
 
 export const alt = "Manas Karra — AI, music and a little more about me.";
 export const size = { width: 1200, height: 630 };
@@ -14,7 +15,7 @@ export default function OpenGraphImage() {
       <div style={{ flex: 1, display: "flex", flexDirection: "column", padding: "48px 66px" }}>
         <div style={{ color: "#a1a8b7", fontSize: 16 }}>Overview</div>
         <div style={{ marginTop: 100, fontSize: 58, letterSpacing: -1 }}>Hi, I’m Manas.</div>
-        <div style={{ marginTop: 25, fontSize: 25, lineHeight: 1.7, maxWidth: 680, color: "#a1a8b7" }}>I love AI and music. Based in Dubai, making hip-hop as sledg3r.</div>
+        <div style={{ marginTop: 25, fontSize: 25, lineHeight: 1.7, maxWidth: 680, color: "#a1a8b7" }}>{site.description}</div>
         <div style={{ marginTop: "auto", fontSize: 16, color: "#a1a8b7" }}>manaskarra.com</div>
       </div>
     </div>, size

@@ -27,8 +27,8 @@ export default function HomePage() {
       <HologramPortrait />
       <h1 id="overview-title">Hi, I’m Manas.</h1>
       <p className="workspace-intro">
-        I love AI and music. Based in Dubai, making hip-hop{" "}
-        <span className="ws-music-reference">as <a className="ws-music-link" href="#music">sledg3r</a>.</span>
+        Usually building something with AI or making beats{" "}
+        <span className="ws-music-reference">as <a className="ws-music-link" href="#music">sledg3r</a>.</span> Based in Dubai.
       </p>
       <div className="workspace-hero-actions">
         <ResumeButton className="ws-button ws-button-primary">Résumé <WorkspaceIcon name="note" /></ResumeButton>
@@ -66,7 +66,7 @@ export default function HomePage() {
           <WorkspaceIcon name="music" />
           <div>
             <a className="project-title" href="/projects/magenta-wsp">magenta-wsp <WorkspaceIcon name="arrow" /></a>
-            <p>Piano to flute through one permanent weight edit. Listen and explore the changed weights.</p>
+            <p>My weight-space programming experiment: piano to flute with one edit to 0.032% of Magenta’s weights.</p>
             <Link className="project-note-link" href="/blog/magenta-wsp">Read the write-up</Link>
           </div>
         </article>
