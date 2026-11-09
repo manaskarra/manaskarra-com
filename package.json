@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/check-production-ref.mjs && next build && node scripts/check-production-ref.mjs",
     "start": "next start",
     "lint": "eslint"
   },

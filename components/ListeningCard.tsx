@@ -59,17 +59,14 @@ export function ListeningCard() {
   if (!ready || !track || dismissed) return null;
 
   return <aside className="listening-card" aria-label="Weekly listening pick" onKeyDown={event => { if (event.key === "Escape") dismiss(); }}>
-    <div className="listening-header">
-      <span className="listening-label"><WorkspaceIcon name="music" />On repeat this week</span>
-      <button className="ws-icon-button listening-close" type="button" aria-label="Dismiss weekly listening pick" onClick={dismiss}><WorkspaceIcon name="close" /></button>
-    </div>
     <a className="listening-link" href={profileUrl} title={`${track.title} — ${track.artist}. View my Last.fm profile`} target="_blank" rel="noopener noreferrer">
       <span className="listening-record" aria-hidden="true"><span /></span>
       <span className="listening-copy">
+        <span className="listening-label">On repeat <span>this week</span></span>
         <span className="listening-track">{track.title}</span>
         <span className="listening-artist">{track.artist}</span>
       </span>
-      <WorkspaceIcon name="arrow" />
     </a>
+    <button className="ws-icon-button listening-close" type="button" aria-label="Dismiss weekly listening pick" onClick={dismiss}><WorkspaceIcon name="close" /></button>
   </aside>;
 }

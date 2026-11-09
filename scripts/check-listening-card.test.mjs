@@ -40,6 +40,12 @@ describe("weekly listening card", { concurrency: true }, () => {
     assert.equal(await card(page).getByText(track.artist).count(), 1);
     assert.equal(await page.locator("#workspace-sidebar .listening-card").count(), 0);
     assert.equal(await card(page).getByRole("link").getAttribute("href"), "https://www.last.fm/user/manask_");
+    const bounds = await card(page).boundingBox();
+    assert.ok(bounds.y >= 0 && bounds.y + bounds.height <= 64, "widget stays inside the top toolbar");
+    assert.ok(bounds.width <= 270 && bounds.height <= 60, "widget remains compact even with a long title");
+    await page.getByRole("heading", { name: "Experience", exact: true }).scrollIntoViewIfNeeded();
+    const scrolled = await card(page).boundingBox();
+    assert.ok(scrolled.y >= 0 && scrolled.y + scrolled.height <= 64, "widget remains at the top while scrolling");
   });
 
   it("stays hidden beyond the delay until a slow response is ready", async t => {
@@ -100,9 +106,17 @@ describe("weekly listening card", { concurrency: true }, () => {
     const bounds = await card(page).boundingBox();
     assert.ok(bounds.x >= 0 && bounds.x + bounds.width <= 320);
     assert.ok(bounds.y >= 0 && bounds.y + bounds.height <= 640);
+    const header = await page.locator(".workspace-mobile-header").boundingBox();
+    const main = await page.locator("main").boundingBox();
+    assert.ok(bounds.y >= header.y + header.height, "widget does not cover mobile navigation");
+    assert.ok(bounds.y + bounds.height <= main.y, "widget does not cover page content");
     const close = await card(page).getByRole("button").boundingBox();
     assert.ok(close.width >= 44 && close.height >= 44);
     assert.equal(await card(page).evaluate(element => getComputedStyle(element).animationName), "none");
+    await page.getByRole("button", { name: "Open navigation" }).click();
+    await page.getByRole("link", { name: "Work", exact: true }).click();
+    const section = await page.getByRole("heading", { name: "Experience", exact: true }).boundingBox();
+    assert.ok(section.y >= 125, "anchor navigation keeps headings below both mobile bars");
     await card(page).getByRole("link").focus();
     await page.keyboard.press("Escape");
     assert.equal(await card(page).count(), 0);

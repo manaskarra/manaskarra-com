@@ -83,12 +83,11 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
       </div>
     </aside>
     <div className="workspace-body">
-      <div className="workspace-topbar"><span>{currentLabel}</span></div>
+      <div className="workspace-topbar"><span>{currentLabel}</span><ListeningCard /></div>
       <main id="main-content" className={home ? "workspace-document" : "workspace-document workspace-article"}>{children}</main>
       <footer className="workspace-footer"><span>© {new Date().getFullYear()} Manas Karra</span><div><SectionLink href={sectionHref("overview")}>Back to top ↑</SectionLink></div></footer>
     </div>
     <PersonalDialog />
-    <ListeningCard />
   </div>;
 }
 
