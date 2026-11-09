@@ -82,8 +82,6 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
         <a className="workspace-nav-item" href="https://www.youtube.com/@sledg3r" target="_blank" rel="noopener noreferrer"><WorkspaceIcon name="youtube" /><span>YouTube</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
       </div>
       <div className="workspace-about">
-        <p className="workspace-about-label">Beyond the screen</p>
-        <p>Mountains, cricket, table tennis — and a goal to visit 100 countries.</p>
         <a href="#about" aria-haspopup="dialog" onClick={() => setMenuOpen(false)}>A little more about me <WorkspaceIcon name="chevron" /></a>
       </div>
     </aside>

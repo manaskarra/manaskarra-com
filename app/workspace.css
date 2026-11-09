@@ -27,9 +27,8 @@ body { margin: 0; }
 .workspace-nav-item > svg { width: 18px; height: 18px; }
 .workspace-nav-item .nav-external { margin-left: auto; width: 13px; height: 13px; }
 .workspace-pinned { margin-top: 33px; }
-.workspace-about { flex-shrink: 0; margin: auto 12px 6px; padding-top: 36px; font-size: 12px; line-height: 1.75; color: var(--fg-subtle); }
-.workspace-about-label { padding-top: 18px; margin-bottom: 7px; border-top: 1px solid var(--rule); color: var(--fg); font-size: 12px; font-weight: 500; }
-.workspace-about > a { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; margin-top: 5px; color: var(--fg); font-size: 12px; }
+.workspace-about { flex-shrink: 0; margin: auto 12px 6px; padding-top: 24px; }
+.workspace-about > a { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; color: var(--fg-subtle); font-size: 12px; }
 .workspace-about > a svg { width: 12px; height: 12px; transition: transform 140ms; }
 .workspace-about > a:hover, .workspace-about > a:focus-visible { color: var(--accent-hover); }
 .workspace-about > a:hover svg { transform: translateX(2px); }
