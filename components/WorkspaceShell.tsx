@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ListeningStrip } from "./ListeningStrip";
+import { ListeningCard } from "./ListeningCard";
 import { PersonalDialog } from "./PersonalDialog";
 import { ResumeButton, ResumeProvider } from "./ResumeDialog";
 import { WorkspaceIcon, type WorkspaceIconName } from "./WorkspaceIcon";
@@ -81,9 +81,6 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
         <a className="workspace-nav-item" href="https://www.linkedin.com/in/manas-karra/" target="_blank" rel="noopener noreferrer"><WorkspaceIcon name="linkedin" /><span>LinkedIn</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
         <a className="workspace-nav-item" href="https://www.youtube.com/@sledg3r" target="_blank" rel="noopener noreferrer"><WorkspaceIcon name="youtube" /><span>YouTube</span><WorkspaceIcon name="arrow" className="nav-external" /></a>
       </div>
-      <div className="workspace-sidebar-bottom">
-        <ListeningStrip />
-      </div>
     </aside>
     <div className="workspace-body">
       <div className="workspace-topbar"><span>{currentLabel}</span></div>
@@ -91,6 +88,7 @@ function WorkspaceFrame({ children }: { children: ReactNode }) {
       <footer className="workspace-footer"><span>© {new Date().getFullYear()} Manas Karra</span><div><SectionLink href={sectionHref("overview")}>Back to top ↑</SectionLink></div></footer>
     </div>
     <PersonalDialog />
+    <ListeningCard />
   </div>;
 }
 
